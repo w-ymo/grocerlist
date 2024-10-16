@@ -1,8 +1,10 @@
-<nav class="navbar">
-  <ul *ngIf="esHome" class="navbar-links">
-    <li><h1><a routerLink="/">grocerlist</a></h1></li>
-    <li><a routerLink="/about">Sobre Nosotros</a></li>
-    <li><a routerLink="/register">Registrarse</a></li>
-    <li><a routerLink="/login">Iniciar Sesion</a></li>
-  </ul>
-</nav>
+<div class="header">
+  <h1><a routerLink="/" class="basicgreen-anchor">grocerlist</a></h1>
+  <nav class="navbar">
+    <ul *ngIf="esHome" class="navbar-links">
+      <li><a routerLink="/about" class="basicgreen-anchor">Sobre Nosotros</a></li>
+      <li><a routerLink="/register" class="basicgreen-anchor">Registrarse</a></li>
+      <li><a routerLink="/login" class="lightgreen-button basicgreen-anchor">Iniciar Sesion</a></li>
+    </ul>
+  </nav>
+</div>

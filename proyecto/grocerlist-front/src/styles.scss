@@ -4,5 +4,51 @@ body{
     background-color: #FEFAE0;
     font-family: 'Sofia Sans';
     font-style: normal;
-    margin: 30px;
+    margin: 0px;
+}
+
+.navbar-links, .basicgreen-anchor{
+    text-decoration: none;
+    color: #5F6F52;
+}
+
+.lightgreen-button{
+    background-color: #A9B388;
+    padding: 10px;
+    border-radius: 10px;
+    color: #FFFFFF;
+}
+
+.basicgreen-button{
+    background-color: #5F6F52;
+    padding: 10px;
+    border-radius: 10px;
+    color: #FFFFFF;
+}
+
+.header{
+    position: sticky;
+    top: 0px;
+    width: 98%;
+    height: 80px;
+    padding: 20px;
+    background-color: #FEFAE0;
+}
+
+.blacknormal-text{
+    color: #000000;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.blacksmall-text{
+    color: #000000;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.form-title{
+    margin: 0px;
+    padding: 0px;
+    color: #B99470;
 }
