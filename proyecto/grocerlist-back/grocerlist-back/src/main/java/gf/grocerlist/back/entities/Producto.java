@@ -28,11 +28,11 @@ public class Producto {
 	private String nombreProducto;
 	
 	@ManyToOne
-    @JoinColumn(name = "id_categoria", columnDefinition = "categoria")
+    @JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_almacenaje", columnDefinition = "tipo_almacenaje")
+	@JoinColumn(name = "id_almacenaje")
 	private TpAlmacenaje tpAlmacenaje;
 	
 	@ManyToMany(mappedBy = "productos")

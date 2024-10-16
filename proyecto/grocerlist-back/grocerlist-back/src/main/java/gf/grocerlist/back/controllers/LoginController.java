@@ -14,24 +14,24 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 
 @RestController
 public class LoginController {
-
-	private final AuthenticationManager authenticationManager;
-
-	public LoginController(AuthenticationManager authenticationManager) {
-		this.authenticationManager = authenticationManager;
-	}
-
-	/*
-	 * @PostMapping("/login") public ResponseEntity<Void> login(@RequestBody
-	 * LoginRequest loginRequest) { Authentication authenticationRequest =
-	 * UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.username(),
-	 * loginRequest.password()); Authentication authenticationResponse =
-	 * this.authenticationManager.authenticate(authenticationRequest); return
-	 * authenticationResponse; }
-	 */
-
-	public record LoginRequest(String username, String password) {
-		
-	}
+//
+//	private final AuthenticationManager authenticationManager;
+//
+//	public LoginController(AuthenticationManager authenticationManager) {
+//		this.authenticationManager = authenticationManager;
+//	}
+//
+//	/*
+//	 * @PostMapping("/login") public ResponseEntity<Void> login(@RequestBody
+//	 * LoginRequest loginRequest) { Authentication authenticationRequest =
+//	 * UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.username(),
+//	 * loginRequest.password()); Authentication authenticationResponse =
+//	 * this.authenticationManager.authenticate(authenticationRequest); return
+//	 * authenticationResponse; }
+//	 */
+//
+//	public record LoginRequest(String username, String password) {
+//		
+//	}
 
 }

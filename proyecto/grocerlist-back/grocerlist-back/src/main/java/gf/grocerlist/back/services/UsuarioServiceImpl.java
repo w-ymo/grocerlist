@@ -3,10 +3,12 @@ package gf.grocerlist.back.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import gf.grocerlist.back.entities.Usuario;
 import gf.grocerlist.back.repositories.UsuarioRepository;
 
+@Service
 public class UsuarioServiceImpl implements UsuarioService{
 
 	@Autowired

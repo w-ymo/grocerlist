@@ -20,41 +20,41 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-			.authorizeHttpRequests((authorize) -> authorize
-				.requestMatchers("/login").permitAll()
-				.anyRequest().authenticated()
-			);
-
-		return http.build();
-	}
-
-	@Bean
-	public AuthenticationManager authenticationManager(
-			UserDetailsService userDetailsService,
-			PasswordEncoder passwordEncoder) {
-		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-		authenticationProvider.setUserDetailsService(userDetailsService);
-		authenticationProvider.setPasswordEncoder(passwordEncoder);
-
-		return new ProviderManager(authenticationProvider);
-	}
-	
-	@Bean
-	public UserDetailsService userDetailsService(String username, String password) {
-		UserDetails userDetails = User.builder()
-			.username(username)
-			.password(password)
-			.roles("USER")
-			.build();
-
-		return new InMemoryUserDetailsManager(userDetails);
-	}
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-	    return new BCryptPasswordEncoder();
-	}
+//	@Bean
+//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//		http
+//			.authorizeHttpRequests((authorize) -> authorize
+//				.requestMatchers("/login").permitAll()
+//				.anyRequest().authenticated()
+//			);
+//
+//		return http.build();
+//	}
+//
+//	@Bean
+//	public AuthenticationManager authenticationManager(
+//			UserDetailsService userDetailsService,
+//			PasswordEncoder passwordEncoder) {
+//		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+//		authenticationProvider.setUserDetailsService(userDetailsService);
+//		authenticationProvider.setPasswordEncoder(passwordEncoder);
+//
+//		return new ProviderManager(authenticationProvider);
+//	}
+//	
+//	@Bean
+//	public UserDetailsService userDetailsService(String username, String password) {
+//		UserDetails userDetails = User.builder()
+//			.username(username)
+//			.password(password)
+//			.roles("USER")
+//			.build();
+//
+//		return new InMemoryUserDetailsManager(userDetails);
+//	}
+//	
+//	@Bean
+//	public PasswordEncoder passwordEncoder() {
+//	    return new BCryptPasswordEncoder();
+//	}
 }
