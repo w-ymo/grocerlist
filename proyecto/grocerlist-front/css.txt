@@ -1,0 +1,275 @@
+/* VentanaPrincipalWeb */
+
+position: relative;
+width: 1440px;
+height: 1024px;
+
+background: #FFFFFF;
+
+
+/* VentanaPrincipalWeb */
+
+position: absolute;
+width: 1440px;
+height: 1024px;
+left: 0px;
+top: -7px;
+
+
+
+/* PaginaInicio */
+
+position: absolute;
+width: 1440px;
+height: 1024px;
+left: 0px;
+top: -7px;
+
+background: #FEFAE0;
+
+
+/* Te presentamos grocerlist, la nueva herramienta para comprar. */
+
+position: absolute;
+width: 880px;
+height: 76px;
+left: calc(50% - 880px/2);
+top: calc(50% - 76px/2 - 87px);
+
+font-family: 'Sofia Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 32px;
+line-height: 38px;
+text-align: center;
+
+color: #000000;
+
+
+
+/* Visualiza y crea listas, mira las recomendaciones y ahorra. */
+
+position: absolute;
+width: 610px;
+height: 29px;
+left: calc(50% - 610px/2 - 1px);
+top: calc(50% - 29px/2 - 7.5px);
+
+font-family: 'Sofia Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+text-align: center;
+
+color: #000000;
+
+
+
+/* GrupoRegistrarse */
+
+position: absolute;
+width: 748px;
+height: 91px;
+left: calc(50% - 748px/2);
+top: 546px;
+
+
+
+/* Input email */
+
+position: absolute;
+width: 350px;
+height: 91px;
+left: 346px;
+top: 546px;
+
+
+
+/* Rectangle 2 */
+
+box-sizing: border-box;
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 42.86%;
+bottom: 0%;
+
+background: #B99470;
+border-bottom: 2px solid #000000;
+
+
+/* E-mail */
+
+position: absolute;
+left: 0%;
+right: 53.43%;
+top: 0%;
+bottom: 57.14%;
+
+font-family: 'Sofia Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 29px;
+
+color: #B99470;
+
+
+
+/* Boton registrarse */
+
+position: absolute;
+width: 350px;
+height: 56px;
+left: 744px;
+top: 581px;
+
+
+
+/* Rectangle 4 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #5F6F52;
+border-radius: 15px;
+
+
+/* Registrarse */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+font-family: 'Sofia Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 32px;
+line-height: 38px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* HeaderConMenu */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 1440px;
+height: 100px;
+left: 0px;
+top: 0px;
+
+background: #FEFAE0;
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 2px;
+
+
+/* Boton iniciar sesión */
+
+position: absolute;
+width: 300px;
+height: 56px;
+left: 1094px;
+top: 22px;
+
+
+
+/* Rectangle 4 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #A9B388;
+border-radius: 15px;
+
+
+/* Iniciar sesión */
+
+position: absolute;
+left: 15.33%;
+right: 15%;
+top: 12.5%;
+bottom: 10.71%;
+
+font-family: 'Sofia Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 36px;
+line-height: 43px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Registrarse */
+
+position: absolute;
+width: 162px;
+height: 38px;
+left: 872px;
+top: 31px;
+
+font-family: 'Sofia Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 32px;
+line-height: 38px;
+
+color: #5F6F52;
+
+
+
+/* Sobre nosotros */
+
+position: absolute;
+width: 215px;
+height: 38px;
+left: 597px;
+top: 31px;
+
+font-family: 'Sofia Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 32px;
+line-height: 38px;
+
+color: #5F6F52;
+
+
+
+/* grocerlist */
+
+position: absolute;
+width: 274px;
+height: 77px;
+left: 50px;
+top: 12px;
+
+font-family: 'Sofia Sans';
+font-style: normal;
+font-weight: 800;
+font-size: 64px;
+line-height: 77px;
+/* identical to box height */
+
+color: #5F6F52;
+
