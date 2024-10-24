@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-header-grocerlist',
+  selector: '[app-header-grocerlist]',
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './header-grocerlist.component.html',
@@ -12,10 +12,11 @@ import { RouterLink } from '@angular/router';
 
 export class HeaderGrocerlistComponent {
 
-  esHome: boolean = true;
+  @Input('app-header-grocerlist') menu: any;
 
-  // constructor(esHome: boolean) {
-  //   this.esHome = esHome;
-  // }
-  
+  openLateralMenu(){
+    
+  }
+
+
 }

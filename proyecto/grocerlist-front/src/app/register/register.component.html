@@ -1,1 +1,25 @@
-<p>register works!</p>
+<div [app-header-grocerlist]="0"></div>
+<div class="background-img">
+    <div class="form-container">
+        <h1>Iniciar sesion</h1>
+        <form action="">
+            <div>
+                <p class="form-subtitle-login">E-mail</p>
+                <input class="basic-input" type="text" name="email">
+                <p class="form-subtitle-login">Contraseña</p>
+                <input class="basic-input" type="text" name="password">
+                <p class="form-subtitle-login">Repita contraseña</p>
+                <input class="basic-input" type="text" name="password">
+                <br>
+                <div>
+                    <button type="submit" class="basicgreen-button">Registrarse</button>
+                </div>
+                <p class="blacksmall-text paragraph-center">Si ya tiene una cuenta, pulse abajo</p>
+                <div>
+                    <a routerLink="/login" class="lightgreen-button basicgreen-anchor" routerLinkActive="active" replaceUrl="true">Iniciar sesión</a>
+                </div>
+                <p class="margin-bottom"></p>
+            </div>
+        </form>
+    </div>
+</div>
