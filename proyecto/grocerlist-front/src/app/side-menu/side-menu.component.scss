@@ -1,0 +1,24 @@
+li {
+    list-style-type: none;
+    font-weight: bolder;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+ul{
+    margin-right: 50px;
+    margin-left: 50px;
+    padding: 30px;
+    display: flexbox;
+    height: 90%;
+}
+
+.close-symbol{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px;
+    font-size: 4rem;
+}

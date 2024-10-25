@@ -1,1 +1,14 @@
-<p>side-menu works!</p>
+<div class="background-menu" *ngIf="visible" (click)="toggleMenu()">
+    <div class="list-container">
+        <ul>
+            <li><a href="" class="sidebar-links">Listas</a></li>
+            <li><a href="" class="sidebar-links">Recomendaciones</a></li>
+            <li><a href="" class="sidebar-links">Cuenta</a></li>
+        </ul>
+    </div>
+    <div class="close-symbol">
+        <i class="bi bi-x"></i>
+    </div>
+</div>
+
+

@@ -1,22 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input} from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SideMenuComponent } from '../side-menu/side-menu.component';
 
 @Component({
-  selector: '[app-header-grocerlist]',
+  selector: 'app-header-grocerlist',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, SideMenuComponent],
   templateUrl: './header-grocerlist.component.html',
   styleUrl: './header-grocerlist.component.scss'
 })
 
 export class HeaderGrocerlistComponent {
 
-  @Input('app-header-grocerlist') menu: any;
+  @Input() public menu: any = 0;
 
-  openLateralMenu(){
-    
+  public visible: boolean = false;
+
+  toggleLateralMenu(){
+    this.visible = !this.visible;
   }
-
-
 }

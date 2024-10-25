@@ -7,7 +7,7 @@
       <li><a routerLink="/login" class="lightgreen-button basicgreen-anchor" routerLinkActive="active" replaceUrl="true">Iniciar Sesion</a></li>
     </ul>
     <div *ngIf="menu==2">
-      <button class="lateral-menu hamburger hamburguer--squeeze is-active" type="button" (click)="openLateralMenu()">
+      <button class="lateral-menu hamburger hamburguer--squeeze is-active" type="button" (click)="toggleLateralMenu()">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
@@ -15,3 +15,4 @@
     </div>
   </nav>
 </div>
+<app-side-menu [visible]="visible" (toggleActiveEvent)="toggleLateralMenu()"/>
