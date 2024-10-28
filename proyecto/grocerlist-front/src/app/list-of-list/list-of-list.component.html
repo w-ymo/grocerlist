@@ -1,2 +1,32 @@
-<app-header-grocerlist [menu]="2"/>
-<p>LISTAS</p>
+<app-header-grocerlist [menu]="2" />
+<div class="list-container">
+    <h1>LISTAS PROPIAS</h1>
+    <table class="table-list">
+        <tbody>
+            <tr class="table-list-element" *ngFor="let list of lists">
+                <td>
+                    <div class="blacknormal-text">{{list}}</div>
+                </td>
+                <td>
+                    <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="list-container">
+    <h1>LISTAS AÑADIDAS</h1>
+    <table class="table-list">
+        <tbody>
+            <tr class="table-list-element">
+                <td>
+                    <div class="blacknormal-text">Titulo</div>
+                </td>
+                <td>
+                    <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

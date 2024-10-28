@@ -1,12 +1,13 @@
-<div class="background-menu" *ngIf="visible" (click)="toggleMenu()">
-    <div class="list-container">
+<div *ngIf="visible" class="background-menu">
+    <div class="close-menu" (click)="toggleMenu()"></div>
+    <div class="menu-container">
         <ul>
-            <li><a href="" class="sidebar-links">Listas</a></li>
-            <li><a href="" class="sidebar-links">Recomendaciones</a></li>
-            <li><a href="" class="sidebar-links">Cuenta</a></li>
+            <li><a routerLink="/login" class="sidebar-links">Listas</a></li>
+            <li><a routerLink="" class="sidebar-links">Recomendaciones</a></li>
+            <li><a routerLink="" class="sidebar-links">Cuenta</a></li>
         </ul>
     </div>
-    <div class="close-symbol">
+    <div class="close-symbol" (click)="toggleMenu()">
         <i class="bi bi-x"></i>
     </div>
 </div>

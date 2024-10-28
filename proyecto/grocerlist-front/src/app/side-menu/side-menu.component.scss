@@ -22,3 +22,15 @@ ul{
     padding: 20px;
     font-size: 4rem;
 }
+
+.close-menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 490px);
+    height: 100%;
+}
+
+a{
+    position: relative;
+}

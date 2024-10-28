@@ -4,7 +4,7 @@
     <ul *ngIf="menu==1" class="navbar-links">
       <li><a routerLink="/about" class="basicgreen-anchor">Sobre Nosotros</a></li>
       <li><a routerLink="/register" class="basicgreen-anchor">Registrarse</a></li>
-      <li><a routerLink="/login" class="lightgreen-button basicgreen-anchor" routerLinkActive="active" replaceUrl="true">Iniciar Sesion</a></li>
+      <li><a routerLink="/login" class="lightgreen-button basicgreen-anchor">Iniciar Sesion</a></li>
     </ul>
     <div *ngIf="menu==2">
       <button class="lateral-menu hamburger hamburguer--squeeze is-active" type="button" (click)="toggleLateralMenu()">
