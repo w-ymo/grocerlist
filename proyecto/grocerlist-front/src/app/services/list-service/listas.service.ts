@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class ListasService {
 
   constructor() { }
+
+  getListas():any{
+    return ['awiki', 'antonio'];
+  }
 }
