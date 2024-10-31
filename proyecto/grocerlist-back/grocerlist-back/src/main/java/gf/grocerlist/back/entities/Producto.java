@@ -3,8 +3,10 @@ package gf.grocerlist.back.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,6 +37,6 @@ public class Producto {
 	@JoinColumn(name = "id_almacenaje")
 	private TpAlmacenaje tpAlmacenaje;
 	
-	@ManyToMany(mappedBy = "productos")
+	@ManyToMany(mappedBy = "productos", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private Set<Lista> listas = new HashSet<>();
 }

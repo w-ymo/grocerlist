@@ -48,6 +48,8 @@ public class ListaServiceImpl implements ListaService{
 		Optional<Lista> optional = repo.findById(id);
 		return (optional.isPresent()) ? optional.get() : null;
 	}
+	
+	
 
 	@Override
 	public boolean deleteList(Long id) {
@@ -66,6 +68,11 @@ public class ListaServiceImpl implements ListaService{
 	@Override
 	public Lista updateList(Lista lista) {
 		return repo.save(lista);
+	}
+
+	@Override
+	public List<Lista> getByUser(String username) {
+		return repo.getByUsuarioNombreUsuario(username);
 	}
 
 	
