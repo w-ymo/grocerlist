@@ -1,24 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { HeaderGrocerlistComponent } from '../header-grocerlist/header-grocerlist.component';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
 import { CommonModule } from '@angular/common';
 import { ListasService } from '../services/list-service/listas.service';
+import { User } from '../models/user';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-of-list',
   standalone: true,
-  imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule],
+  imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule, HttpClientModule],
   templateUrl: './list-of-list.component.html',
   styleUrl: './list-of-list.component.scss',
 })
 export class ListOfListComponent {
 
+  @Input() user: User = new User();
+
+  httpClient = inject(HttpClient);
+
+  listService = new ListasService(this.httpClient);
+
+  constructor(){ }
+
   lists:any;
-  private listService = new ListasService();
 
   ngOnInit(): void {
     //Aqui recibiria el usuario que ha iniciado sesion
-    this.lists = this.listService.getListas();
+    this.user.nombreUsuario = "des-prueba";
+    this.listService.getListas(this.user).subscribe(
+      l => {
+        this.lists = l;
+      }
+    )
   }
   
 }
