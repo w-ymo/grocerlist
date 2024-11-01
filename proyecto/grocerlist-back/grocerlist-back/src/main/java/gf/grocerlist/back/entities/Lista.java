@@ -3,6 +3,8 @@ package gf.grocerlist.back.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.catalina.User;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -15,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -30,6 +33,9 @@ public class Lista {
 
 	@Column(name = "nombre_lista")
 	private String nombreLista;
+	
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Usuario usuarioCreador;
 	
 	//many to many a lista
 	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)

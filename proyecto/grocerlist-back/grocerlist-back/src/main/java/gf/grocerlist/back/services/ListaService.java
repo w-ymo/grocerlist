@@ -12,6 +12,7 @@ public interface ListaService {
 	boolean insertProducts(List<Producto> productos, Lista lista);
 	Lista getById(Long id);
 	List<Lista> getByUser(String username);
+	List<Lista> getByCreatorUser(String username);
 	boolean deleteList(Long id);
 	Lista updateProducts(List<Producto> nuevoProducto, Lista lista);
 	Lista updateList(Lista lista);

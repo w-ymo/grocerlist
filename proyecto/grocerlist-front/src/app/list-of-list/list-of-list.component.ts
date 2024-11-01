@@ -23,16 +23,24 @@ export class ListOfListComponent {
 
   constructor(){ }
 
-  lists:any;
+  listsAdded:any;
+  listsCreated:any;
 
   ngOnInit(): void {
     //Aqui recibiria el usuario que ha iniciado sesion
     this.user.nombreUsuario = "des-prueba";
-    this.listService.getListas(this.user).subscribe(
+    this.listService.getListasAdded(this.user).subscribe(
       l => {
-        this.lists = l;
+        this.listsAdded = l;
       }
-    )
+    );
+
+    this.listService.getListasCreated(this.user).subscribe(
+      l => {
+        this.listsCreated = l;
+      }
+    );
+
   }
   
 }

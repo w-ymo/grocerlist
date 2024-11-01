@@ -3,9 +3,9 @@
     <h1>LISTAS PROPIAS</h1>
     <table class="table-list">
         <tbody>
-            <tr class="table-list-element" *ngFor="let list of lists">
+            <tr class="table-list-element" *ngFor="let list of listsCreated">
                 <td>
-                    <div class="blacknormal-text">{{list.nombreLista}}</div>
+                    <div class="blacknormal-text"><a href="">{{list.nombreLista}}</a></div>
                 </td>
                 <td>
                     <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
@@ -19,9 +19,9 @@
     <h1>LISTAS AÑADIDAS</h1>
     <table class="table-list">
         <tbody>
-            <tr class="table-list-element">
+            <tr class="table-list-element" *ngFor="let list of listsAdded">
                 <td>
-                    <div class="blacknormal-text">Titulo</div>
+                    <div class="blacknormal-text"><a href="">{{list.nombreLista}}</a></div>
                 </td>
                 <td>
                     <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>

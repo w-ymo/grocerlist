@@ -18,9 +18,14 @@ public class ListController {
 	@Autowired
 	ListaService service;
 	
-	@GetMapping("/obtener/{username}")
-	public List<Lista> getAllProducts(@PathVariable String username){
+	@GetMapping("/obtener/seguidas/{username}")
+	public List<Lista> getListsAdded(@PathVariable String username){
 		return service.getByUser(username);
+	}
+	
+	@GetMapping("/obtener/creadas/{username}")
+	public List<Lista> getLists(@PathVariable String username){
+		return service.getByCreatorUser(username);
 	}
 	
 }

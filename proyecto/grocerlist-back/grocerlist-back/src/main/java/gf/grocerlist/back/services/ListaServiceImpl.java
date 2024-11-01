@@ -75,6 +75,11 @@ public class ListaServiceImpl implements ListaService{
 		return repo.getByUsuarioNombreUsuario(username);
 	}
 
+	@Override
+	public List<Lista> getByCreatorUser(String username) {
+		return repo.getByUsuarioCreador(username);
+	}
+
 	
 	
 }
