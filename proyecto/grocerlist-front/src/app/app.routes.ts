@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
 import { ListOfListComponent } from './list-of-list/list-of-list.component';
+import { ListComponent } from './list/list.component';
 
 
 export const routes: Routes = [ 
@@ -13,6 +14,7 @@ export const routes: Routes = [
         { path: 'register', component: RegisterComponent},
         { path: 'forgotten', component: WorkInProgressComponent},
         { path: 'list-of-list', component: ListOfListComponent},
+        { path: 'list', component: ListComponent},
       ];
       
   export class AppRoutingModule { }      

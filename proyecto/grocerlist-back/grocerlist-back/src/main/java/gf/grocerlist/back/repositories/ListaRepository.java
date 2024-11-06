@@ -13,7 +13,7 @@ public interface ListaRepository  extends JpaRepository<Lista, Long>{
 	@Query("select l from Lista l join fetch l.usuarios u where u.nombreUsuario = :username")
 	List<Lista> getByUsuarioNombreUsuario(@Param("username") String username);
 	
-	@Query("select l from Lista l where usuarioCreador.nombreUsuario = :username")
+	@Query("select l from Lista l where l.usuarioCreador.nombreUsuario = :username")
 	List<Lista> getByUsuarioCreador(@Param("username") String username);
 	
 }

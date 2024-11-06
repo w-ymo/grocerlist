@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { ListasService } from '../services/list-service/listas.service';
 import { User } from '../models/user';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list-of-list',
   standalone: true,
-  imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule, HttpClientModule],
+  imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule, HttpClientModule, RouterLink],
   templateUrl: './list-of-list.component.html',
   styleUrl: './list-of-list.component.scss',
 })
@@ -32,12 +33,16 @@ export class ListOfListComponent {
     this.listService.getListasAdded(this.user).subscribe(
       l => {
         this.listsAdded = l;
+        console.log('añadidas');
+        console.log(l);
       }
     );
 
     this.listService.getListasCreated(this.user).subscribe(
       l => {
         this.listsCreated = l;
+        console.log('creadas');
+        console.log(l);
       }
     );
 

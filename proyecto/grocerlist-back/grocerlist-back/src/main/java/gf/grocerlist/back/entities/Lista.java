@@ -35,6 +35,8 @@ public class Lista {
 	private String nombreLista;
 	
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuario_creador")
+	@JsonIgnore
 	private Usuario usuarioCreador;
 	
 	//many to many a lista

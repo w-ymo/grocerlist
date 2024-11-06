@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,6 +48,9 @@ public class Usuario {
 	
 	@Column(name = "password")
 	private String password;
+	
+	@OneToMany(mappedBy = "usuarioCreador")
+	Set<Lista> listasCreadas = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "usuarios", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JsonIgnore

@@ -18,11 +18,11 @@ export class ListasService extends BasicService{
   }
 
   getListasAdded(user: User): Observable<List> {
-    return this.http.get<List>(this.apiUrl + '/obtener/seguidas' + user.nombreUsuario, {headers: this.headers})
+    return this.http.get<List>(this.apiUrl + '/obtener/seguidas/' + user.nombreUsuario, {headers: this.headers})
   }
 
   getListasCreated(user: User): Observable<List> {
-    return this.http.get<List>(this.apiUrl + '/obtener/creadas' + user.nombreUsuario, {headers: this.headers})
+    return this.http.get<List>(this.apiUrl + '/obtener/creadas/' + user.nombreUsuario, {headers: this.headers})
   }
 
 
