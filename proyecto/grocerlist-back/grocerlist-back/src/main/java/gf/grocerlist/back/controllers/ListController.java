@@ -25,14 +25,14 @@ public class ListController {
 	@Autowired
 	ListaService service;
 	
-	@GetMapping("/obtener/seguidas/{id}")
-	public List<Lista> getListsAdded(@PathVariable Long id){
-		return service.getByUser(id);
+	@GetMapping("/obtener/seguidas/{username}")
+	public List<Lista> getListsAdded(@PathVariable String username){
+		return service.getByUser(username);
 	}
 
-	@GetMapping("/obtener/creadas/{id}")
-	public List<Lista> getLists(@PathVariable Long id){
-		return service.getByCreatorUser(id);
+	@GetMapping("/obtener/creadas/{username}")
+	public List<Lista> getLists(@PathVariable String username){
+		return service.getByCreatorUser(username);
 	}
 	
 	@GetMapping("/obtenerProductos/{idLista}")

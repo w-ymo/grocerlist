@@ -70,13 +70,13 @@ public class ListaServiceImpl implements ListaService{
 	}
 
 	@Override
-	public List<Lista> getByUser(Long id) {
-		return repo.getByUsuarioIdUsuario(id);
+	public List<Lista> getByUser(String username) {
+		return repo.getByUsuarioUsername(username);
 	}
 
 	@Override
-	public List<Lista> getByCreatorUser(Long id) {
-		return repo.getByUsuarioCreador(id);
+	public List<Lista> getByCreatorUser(String username) {
+		return repo.getByUsuarioCreador(username);
 	}
 
 	@Override

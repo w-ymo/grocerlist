@@ -4,7 +4,8 @@
         <ul>
             <li><a routerLink="/login" class="sidebar-links">Listas</a></li>
             <li><a routerLink="" class="sidebar-links">Recomendaciones</a></li>
-            <li><a routerLink="" class="sidebar-links">Cuenta</a></li>
+            <li><a routerLink="/account" class="sidebar-links">Cuenta</a></li>
+            <li><a class="sidebar-links" (click)="logout()">Cerrar sesión</a></li>
         </ul>
     </div>
     <div class="close-symbol" (click)="toggleMenu()">

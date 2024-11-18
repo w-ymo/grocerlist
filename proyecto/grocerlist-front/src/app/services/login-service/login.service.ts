@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
-import { User } from '../../models/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { LoginRequest } from '../../models/loginReq';
 import { BasicService } from '../basic.service';
 import { enviroment } from '../../../enviroment/enviroment';
+import { RegisterRequest } from '../../models/registerReq';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +23,23 @@ export class LoginService extends BasicService{
     return this.http.post<any>(enviroment.apiURL + "auth/login", credentials).pipe(
       tap( (userData) => {
         sessionStorage.setItem("token", userData.token);
+        sessionStorage.setItem("username", credentials.username);
         this.currentUserData.next(userData);
         this.currentUserLoginOn.next(true);
         
+      }),
+      map((userData) => userData.token),
+      catchError(this.handleError)
+    );
+  }
+
+  register(credentials:RegisterRequest):Observable<any>{
+    return this.http.post<any>(enviroment.apiURL + "auth/register", credentials).pipe(
+      tap( (userData) => {
+        sessionStorage.setItem("token", userData.token);
+        sessionStorage.setItem("username", credentials.username);
+        this.currentUserData.next(userData);
+        this.currentUserLoginOn.next(true);
       }),
       map((userData) => userData.token),
       catchError(this.handleError)
@@ -39,7 +53,7 @@ export class LoginService extends BasicService{
 
   private handleError(error:HttpErrorResponse){
     if(error.status===0){
-      console.error('Se ha producio un error ', error.error);
+      console.error('Se ha producio un error ', error);
     }
     else{
       console.error('Backend retornó el código de estado ', error);

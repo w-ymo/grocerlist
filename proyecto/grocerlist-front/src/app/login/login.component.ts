@@ -24,7 +24,7 @@ export class LoginComponent {
 
   constructor(private formBuilder:FormBuilder, private router:Router, private loginService: LoginService) { }
 
-  get email(){
+  get username(){
     return this.loginForm.controls.username;
   }
 

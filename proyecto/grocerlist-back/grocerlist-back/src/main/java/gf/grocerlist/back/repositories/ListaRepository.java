@@ -11,11 +11,11 @@ import gf.grocerlist.back.entities.Producto;
 
 public interface ListaRepository  extends JpaRepository<Lista, Long>{
 
-	@Query("select l from Lista l join fetch l.usuarios u where u.idUsuario = :id")
-	List<Lista> getByUsuarioIdUsuario(@Param("id") Long id);
+	@Query("select l from Lista l join fetch l.usuarios u where u.nombreUsuario = :username")
+	List<Lista> getByUsuarioUsername(@Param("username") String username);
 	
-	@Query("select l from Lista l where l.usuarioCreador.idUsuario = :id")
-	List<Lista> getByUsuarioCreador(@Param("id") Long id);
+	@Query("select l from Lista l where l.usuarioCreador.nombreUsuario = :username")
+	List<Lista> getByUsuarioCreador(@Param("username") String username);
 	
 	@Query("select l.productos from Lista l where l.idLista = :idLista")
 	List<Producto> getProducts(@Param("idLista") Long idLista);

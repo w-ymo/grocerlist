@@ -40,13 +40,18 @@ public class AuthServiceImpl implements AuthService{
 
 	@Override
 	public AuthResponse register(RegisterRequest rq) {
-		Usuario user = new Usuario();
-		user.setCorreoElectronico(rq.getEmail());
-		user.setNombreUsuario(rq.getUsername());
-		user.setPassword(passwordEncoder.encode(rq.getPassword()));
-		userRepo.save(user);
+		if(userRepo.findByNombreUsuario(rq.getUsername())!= null) {
+			Usuario user = new Usuario();
+			user.setCorreoElectronico(rq.getEmail());
+			user.setNombreUsuario(rq.getUsername());
+			user.setPassword(passwordEncoder.encode(rq.getPassword()));
+			userRepo.save(user);
+			
+			return AuthResponse.builder().token(jwtService.getToken(user)).build();
+		}else {
+			throw new IllegalArgumentException("El nombre de usuario ya existe");
+		}
 		
-		return AuthResponse.builder().token(jwtService.getToken(user)).build();
 	}
 
 	

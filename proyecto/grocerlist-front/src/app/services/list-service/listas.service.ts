@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/user';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { appConfig, baseURI } from '../../app.config';
-import { Observable, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { List } from '../../models/list';
 import { BasicService } from '../basic.service';
 import { Product } from '../../models/product';
@@ -18,27 +18,34 @@ export class ListasService extends BasicService{
     super();
   }
 
-  getListasAdded(id: number): Observable<List> {
-    return this.http.get<List>(enviroment.apiURL + 'listas/obtener/seguidas/' + id);
+  getListasAdded(username: string): Observable<List> {
+    return this.http.get<List>(enviroment.apiURL + 'listas/obtener/seguidas/' + username).pipe(
+      catchError(this.handleError)
+    );
   }
 
-  getListasCreated(id: number): Observable<List> {
-    return this.http.get<List>(enviroment.apiURL + 'listas/obtener/creadas/' + id);
+  getListasCreated(username: string): Observable<List> {
+    return this.http.get<List>(enviroment.apiURL + 'listas/obtener/creadas/' + username).pipe(
+      catchError(this.handleError)
+    );
   }
 
   getProducts(list: List): Observable<Product> {
-    return this.http.get<Product>(enviroment.apiURL + 'listas/obtenerProductos/' + list.idLista);
+    return this.http.get<Product>(enviroment.apiURL + 'listas/obtenerProductos/' + list.idLista).pipe(
+      catchError(this.handleError)
+    );
   }
 
   insertList(list: List): boolean{
-    this.lists = this.http.post<List>(enviroment.apiURL + 'listas/insertarLista', list);
-    console.log(this.lists);
+    this.lists = this.http.post<List>(enviroment.apiURL + 'listas/insertarLista', list).pipe(
+      catchError(this.handleError)
+    );
     return this.lists;
   }
 
   private handleError(error:HttpErrorResponse){
     if(error.status===0){
-      console.error('Se ha producio un error ', error.error);
+      console.error('Se ha producio un error ', error);
     }
     else{
       console.error('Backend retornó el código de estado ', error.status, error.error);

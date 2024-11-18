@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { LoginService } from '../services/login-service/login.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -14,8 +15,20 @@ export class SideMenuComponent {
 
     @Output() toggleActiveEvent = new EventEmitter<boolean>();
 
+    /**
+     *
+     */
+    constructor(private loginService: LoginService, private router: Router) {
+    }
+
     toggleMenu(){
       this.visible = !this.visible;
       this.toggleActiveEvent.emit(this.visible);
     }
+
+    logout(){
+      this.loginService.logout();
+      this.router.navigateByUrl('/');
+    }
+
 }

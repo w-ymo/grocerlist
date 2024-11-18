@@ -3,20 +3,14 @@ import { HeaderGrocerlistComponent } from '../header-grocerlist/header-grocerlis
 import { SideMenuComponent } from '../side-menu/side-menu.component';
 import { CommonModule } from '@angular/common';
 import { ListasService } from '../services/list-service/listas.service';
-import { User } from '../models/user';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
-import { error } from 'console';
 import { UserService } from '../services/user-service/user.service';
-import { enviroment } from '../../enviroment/enviroment';
 import { LoginService } from '../services/login-service/login.service';
-import { JwtInterceptorService } from '../services/jwt-interceptor-service/jwt-interceptor.service';
-import { ErrorInterceptorService } from '../services/error-interceptor-service/error-interceptor.service';
 
 @Component({
   selector: 'app-list-of-list',
   standalone: true,
-  imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule, HttpClientModule, RouterLink],
+  imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule, RouterLink],
   templateUrl: './list-of-list.component.html',
   styleUrl: './list-of-list.component.scss'
 })
@@ -39,16 +33,30 @@ export class ListOfListComponent {
     this.loginService.currentUserLoginOn.subscribe({
       next:(userLoginOn) => {
         this.userLoginOn=userLoginOn;
-        this.listService.getListasAdded(1).subscribe({
+
+        var username: string | null = sessionStorage.getItem("username");
+
+        this.listService.getListasAdded(username as string).subscribe({
           next: (l) => {
-            console.log(l);
             this.listsAdded = l;
           },
           error: (error) => {
             this.errorMessage = error;
           },
           complete: () => {
-            console.info("Listas ok");
+            console.info("Listas aniadidas ok");
+          }
+        });
+
+        this.listService.getListasCreated(username as string).subscribe({
+          next: (l) => {
+            this.listsCreated = l;
+          },
+          error: (error) => {
+            this.errorMessage = error;
+          },
+          complete: () => {
+            console.info("Listas creadas ok");
           }
         });
       }

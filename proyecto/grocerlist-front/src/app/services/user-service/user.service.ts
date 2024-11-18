@@ -18,4 +18,9 @@ export class UserService extends BasicService{
     return this.http.get<User>(enviroment.apiURL + 'usuarios/id/' + userId);
   }
 
+  getUserByUsername(username: String): Observable<User> {
+    console.log('ENtro');
+    return this.http.get<User>(enviroment.apiURL + 'usuarios/username/' + username);
+  }
+
 }

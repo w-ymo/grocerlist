@@ -1,0 +1,28 @@
+<app-header-grocerlist [menu]="2" />
+
+<div>
+    <form [formGroup]="editUserForm">
+        <div>
+            <div>
+                <label for="username">Nombre usuario</label>
+                <input type="text" name="username" formControlName="username" [(ngModel)]="user.nombreUsuario"/>
+            </div>
+            <div>
+                <label for="name">Nombre</label>
+                <input type="text" name="name" formControlName="name" [(ngModel)]="user.nombre"/>
+            </div>
+            <div>
+                <label for="lastname1">Apellido 1</label>
+                <input type="text" name="lastname1" formControlName="lastname1" [(ngModel)]="user.apellido1"/>
+            </div>
+            <div>
+                <label for="lastname2">Apellido 2</label>
+                <input type="text" name="lastname2" formControlName="lastname2" [(ngModel)]="user.apellido2"/>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+
+</div>
