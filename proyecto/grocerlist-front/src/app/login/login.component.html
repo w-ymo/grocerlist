@@ -2,12 +2,12 @@
 <div class="background-img">
     <div class="form-container">
         <h1>Iniciar sesion</h1>
-        <form action="">
+        <form [formGroup]="loginForm">
             <div>
-                <p class="form-subtitle-login">E-mail</p>
-                <input class="basic-input" type="text" name="email">
+                <p class="form-subtitle-login">Usuario</p>
+                <input class="basic-input" type="text" name="username" formControlName="username">
                 <p class="form-subtitle-login">Contraseña</p>
-                <input class="basic-input" type="text" name="password">
+                <input class="basic-input" type="text" name="password" formControlName="password">
                 <br>
                 <div>
                     <button type="submit" class="basicgreen-button" (click)="login()">Iniciar sesion</button>

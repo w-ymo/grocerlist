@@ -8,6 +8,8 @@ import gf.grocerlist.back.entities.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
+	Optional<Usuario> findByIdUsuario(Long id);
+	
 	Optional<Usuario> findByNombreUsuario(String username);
 	
 	

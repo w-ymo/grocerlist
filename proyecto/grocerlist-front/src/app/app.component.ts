@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
@@ -12,5 +13,5 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 
 export class AppComponent {
-  
+
 }

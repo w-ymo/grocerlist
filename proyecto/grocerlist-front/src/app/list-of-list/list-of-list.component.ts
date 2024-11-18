@@ -4,47 +4,63 @@ import { SideMenuComponent } from '../side-menu/side-menu.component';
 import { CommonModule } from '@angular/common';
 import { ListasService } from '../services/list-service/listas.service';
 import { User } from '../models/user';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
+import { error } from 'console';
+import { UserService } from '../services/user-service/user.service';
+import { enviroment } from '../../enviroment/enviroment';
+import { LoginService } from '../services/login-service/login.service';
+import { JwtInterceptorService } from '../services/jwt-interceptor-service/jwt-interceptor.service';
+import { ErrorInterceptorService } from '../services/error-interceptor-service/error-interceptor.service';
 
 @Component({
   selector: 'app-list-of-list',
   standalone: true,
   imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule, HttpClientModule, RouterLink],
   templateUrl: './list-of-list.component.html',
-  styleUrl: './list-of-list.component.scss',
+  styleUrl: './list-of-list.component.scss'
 })
 export class ListOfListComponent {
 
-  @Input() user: User = new User();
+  userLoginOn: boolean = false;
 
-  httpClient = inject(HttpClient);
+  errorMessage: String = "";
 
-  listService = new ListasService(this.httpClient);
-
-  constructor(){ }
+  constructor(private loginService: LoginService, private listService: ListasService, private userService: UserService){ }
 
   listsAdded:any;
   listsCreated:any;
 
-  ngOnInit(): void {
-    //Aqui recibiria el usuario que ha iniciado sesion
-    this.user.nombreUsuario = "des-prueba";
-    this.listService.getListasAdded(this.user).subscribe(
-      l => {
-        this.listsAdded = l;
-        console.log('añadidas');
-        console.log(l);
-      }
-    );
+  openAddList():void{
+    console.log('antonio');
+  }
 
-    this.listService.getListasCreated(this.user).subscribe(
-      l => {
-        this.listsCreated = l;
-        console.log('creadas');
-        console.log(l);
+  ngOnInit(): void {
+    this.loginService.currentUserLoginOn.subscribe({
+      next:(userLoginOn) => {
+        this.userLoginOn=userLoginOn;
+        this.listService.getListasAdded(1).subscribe({
+          next: (l) => {
+            console.log(l);
+            this.listsAdded = l;
+          },
+          error: (error) => {
+            this.errorMessage = error;
+          },
+          complete: () => {
+            console.info("Listas ok");
+          }
+        });
       }
-    );
+    });
+
+    
+
+    // this.listService.getListasCreated(1).subscribe(
+    //   l => {
+    //     this.listsCreated = l;
+    //   }
+    // );
 
   }
   

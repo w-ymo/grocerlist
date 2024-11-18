@@ -1,4 +1,4 @@
-export class List{
-    idLista: number = 0;
-    nombreLista: string = "";
+export interface List{
+    idLista: number,
+    nombreLista: string
 }

@@ -14,15 +14,22 @@
             </tr>
         </tbody> -->
         <tbody>
-            <tr class="table-list-element">
+            <tr class="table-list-element" *ngFor="let producto of productos">
                 <td>
-                    <div class="blacknormal-text"><a href="">producto</a></div>
+                    <div class="blacknormal-text"><a href="">producto.nombreProducto</a></div>
                 </td>
                 <td>
                     <div class="blacknormal-text"><a href="">cantidad</a></div>
                 </td>
                 <td>
-                    <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                    <div>
+                        <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="#home">Home</a>
+                            <a href="#about">About</a>
+                            <a href="#contact">Contact</a>
+                          </div>
+                    </div>
                 </td>
             </tr>
         </tbody>

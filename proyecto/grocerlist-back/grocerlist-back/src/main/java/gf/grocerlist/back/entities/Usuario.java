@@ -1,7 +1,13 @@
 package gf.grocerlist.back.entities;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,16 +21,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="usuario")
+@Table(name="usuario", uniqueConstraints = @UniqueConstraint(columnNames = {"nombre_usuario"}))
 @Getter
 @Setter
 @ToString
-public class Usuario {
+public class Usuario implements UserDetails {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,5 +67,15 @@ public class Usuario {
 	@ManyToMany(mappedBy = "usuarios", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<Lista> listas = new HashSet<>();
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority(("default")));
+	}
+
+	@Override
+	public String getUsername() {
+		return nombreUsuario;
+	}
 	
 }

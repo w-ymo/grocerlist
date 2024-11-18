@@ -5,14 +5,22 @@
         <tbody>
             <tr class="table-list-element" *ngFor="let list of listsCreated">
                 <td>
-                    <div class="blacknormal-text"><a routerLink="/list" [queryParams]="{listId: list.idLista | json}">{{list.nombreLista}}</a></div>
+                    <div><a class="blacknormal-text" routerLink="/list" [state]="{lista: list}">{{list.nombreLista}}</a></div>
                 </td>
                 <td>
-                    <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                    <div>
+                        <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a routerLink="/list" [state]="{lista: list}">Editar</a>
+                            <a href="#about">Antonio</a>
+                            <a href="#contact">Tumadre</a>
+                          </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div class="add-symbol"><i class="bi bi-plus" onclick="openAddList()"></i></div>
 </div>
 
 <div class="list-container">
@@ -21,7 +29,7 @@
         <tbody>
             <tr class="table-list-element" *ngFor="let list of listsAdded">
                 <td>
-                    <div class="blacknormal-text"><a href="">{{list.nombreLista}}</a></div>
+                    <div><a class="blacknormal-text" routerLink="/list" [state]="{lista: list}">{{list.nombreLista}}</a></div>
                 </td>
                 <td>
                     <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
@@ -29,4 +37,5 @@
             </tr>
         </tbody>
     </table>
+    <div class="add-symbol"><i class="bi bi-plus"></i></div>
 </div>

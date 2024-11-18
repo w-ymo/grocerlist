@@ -49,7 +49,6 @@ public class ListaServiceImpl implements ListaService{
 		return (optional.isPresent()) ? optional.get() : null;
 	}
 	
-	
 
 	@Override
 	public boolean deleteList(Long id) {
@@ -71,13 +70,18 @@ public class ListaServiceImpl implements ListaService{
 	}
 
 	@Override
-	public List<Lista> getByUser(String username) {
-		return repo.getByUsuarioNombreUsuario(username);
+	public List<Lista> getByUser(Long id) {
+		return repo.getByUsuarioIdUsuario(id);
 	}
 
 	@Override
-	public List<Lista> getByCreatorUser(String username) {
-		return repo.getByUsuarioCreador(username);
+	public List<Lista> getByCreatorUser(Long id) {
+		return repo.getByUsuarioCreador(id);
+	}
+
+	@Override
+	public List<Producto> getProducts(Long id) {
+		return repo.getProducts(id);
 	}
 
 	

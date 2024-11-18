@@ -22,7 +22,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	public Usuario findById(Long id) {
-		Optional<Usuario> optional = repo.findById(id);
+		Optional<Usuario> optional = repo.findByIdUsuario(id);
 		if(optional.isPresent()) {
 			return optional.get();
 		}else {

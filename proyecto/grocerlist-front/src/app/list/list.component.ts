@@ -1,24 +1,38 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { ListasService } from '../services/list-service/listas.service';
+import { HeaderGrocerlistComponent } from '../header-grocerlist/header-grocerlist.component';
+import { SideMenuComponent } from '../side-menu/side-menu.component';
+import { CommonModule } from '@angular/common';
+import { List } from '../models/list';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [],
+  imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule, HttpClientModule, RouterLink],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
 export class ListComponent {
-  listId: any;
+  list: any;
+  
+  /**
+   *
+   */
+  constructor(private listService: ListasService) {
+  }
 
-  private _route: ActivatedRoute = new ActivatedRoute();
+  productos: any;
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this._route.params.subscribe(params => {
-     console.log(params);
-    })
+    this.list = history.state.lista;
+    this.listService.getProducts(this.list).subscribe(
+      p => {
+        console.log(p);
+        this.productos = p;
+      }
+    );
   }
 
 
