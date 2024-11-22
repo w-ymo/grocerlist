@@ -10,12 +10,16 @@ import { LoginService } from './services/login-service/login.service';
 import { UserService } from './services/user-service/user.service';
 import { ListasService } from './services/list-service/listas.service';
 import { ProductsService } from './services/product-service/products.service';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { IncluyeService } from './services/incluye-service/incluye.service';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), HttpClientModule, provideHttpClient(withInterceptorsFromDi()),
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true},
-    LoginService, UserService, ListasService, ProductsService
+  providers: [provideRouter(routes), provideClientHydration(), HttpClientModule, 
+    //provideHttpClient(withFetch()),
+    provideHttpClient(withInterceptorsFromDi()),
+     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
+     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true},
+    LoginService, UserService, ListasService, ProductsService, IncluyeService, provideAnimationsAsync()
   ],
 };
 

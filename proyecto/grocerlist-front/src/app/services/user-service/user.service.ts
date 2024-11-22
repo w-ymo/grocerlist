@@ -15,12 +15,15 @@ export class UserService extends BasicService{
   }
 
   getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(enviroment.apiURL + 'usuarios/id/' + userId);
+    return this.http.get<User>(enviroment.apiURL + 'api/usuarios/id/' + userId);
   }
 
   getUserByUsername(username: String): Observable<User> {
-    console.log('ENtro');
-    return this.http.get<User>(enviroment.apiURL + 'usuarios/username/' + username);
+    return this.http.get<User>(enviroment.apiURL + 'api/usuarios/username/' + username);
+  }
+
+  updateById(user: User, id: number): Observable<String> {
+    return this.http.put<String>(enviroment.apiURL + 'api/usuarios/actualizar/' + id, user);
   }
 
 }

@@ -1,6 +1,7 @@
 package gf.grocerlist.back.entities;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,7 +10,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -22,15 +25,20 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Table(name="usuario", uniqueConstraints = @UniqueConstraint(columnNames = {"nombre_usuario"}))
-@Getter
-@Setter
-@ToString
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Usuario implements UserDetails {
 
 	/**
@@ -61,17 +69,18 @@ public class Usuario implements UserDetails {
 	@Column(name = "password")
 	private String password;
 	
-	@OneToMany(mappedBy = "usuarioCreador")
+	@OneToMany(mappedBy = "usuarioCreador", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	Set<Lista> listasCreadas = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "usuarios", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JsonIgnore
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	private Set<Lista> listas = new HashSet<>();
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return List.of(new SimpleGrantedAuthority(("default")));
-	}
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+         return Collections.emptyList();
+    }
 
 	@Override
 	public String getUsername() {

@@ -1,19 +1,23 @@
-<p>PRODUCTOS</p>
-<div>
-    buscador
-
-    <table>
+<div class="background">
+    <form [formGroup]="searchForm">
+        <mat-form-field>
+            <input matInput placeholder="Nombre del producto" formControlName="nombreProducto">
+        </mat-form-field>
+        <mat-select placeholder="Categorias" [(ngModel)]="selectedCategoria" name="categoria" formControlName="categoria">
+            <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">
+                {{categoria.nombreCategoria}}
+            </mat-option>
+        </mat-select>
+        <button mat-button  class="basicgreen-button" (click)="search()">XD</button>
+    </form>
+    <table class="table-list">
         <thead>
             <th>Producto</th>
             <th>Categoria</th>
         </thead>
-        <tr>
-            <td>5</td>
-            <td>2</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>2</td>
+        <tr *ngFor="let producto of productos">
+            <td>{{producto.nombreProducto}}</td>
+            <td>{{producto.categoria.nombreCategoria}}</td>
         </tr>
     </table>
 </div>

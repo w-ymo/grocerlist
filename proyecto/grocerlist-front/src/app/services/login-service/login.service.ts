@@ -15,7 +15,7 @@ export class LoginService extends BasicService{
 
   constructor(private http: HttpClient) {
     super();
-    this.currentUserLoginOn=new BehaviorSubject<boolean>(sessionStorage.getItem("token")!=null);
+    this.currentUserLoginOn = new BehaviorSubject<boolean>(sessionStorage.getItem("token")!=null);
     this.currentUserData = new BehaviorSubject<String>(sessionStorage.getItem("token") || "");
   }
 

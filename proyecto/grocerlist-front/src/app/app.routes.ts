@@ -6,6 +6,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
 import { ListOfListComponent } from './list-of-list/list-of-list.component';
 import { ListComponent } from './list/list.component';
 import { AccountComponent } from './account/account.component';
+import { ProductsComponent } from './products/products.component';
 
 
 export const routes: Routes = [ 
@@ -16,7 +17,8 @@ export const routes: Routes = [
         { path: 'forgotten', component: WorkInProgressComponent},
         { path: 'list-of-list', component: ListOfListComponent},
         { path: 'list', component: ListComponent},
-        { path: 'account', component: AccountComponent}
+        { path: 'account', component: AccountComponent},
+        { path: 'products', component: ProductsComponent}
       ];
       
   export class AppRoutingModule { }      

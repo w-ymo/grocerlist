@@ -5,7 +5,7 @@
         <tbody>
             <tr class="table-list-element" *ngFor="let list of listsCreated">
                 <td>
-                    <div><a class="blacknormal-text" routerLink="/list" [state]="{lista: list}">{{list.nombreLista}}</a></div>
+                    <div><a class="blacknormal-text" (click)="openList(list.idLista)">{{list.nombreLista}}</a></div>
                 </td>
                 <td>
                     <div>
@@ -20,7 +20,7 @@
             </tr>
         </tbody>
     </table>
-    <div class="add-symbol"><i class="bi bi-plus" onclick="openAddList()"></i></div>
+    <div class="add-symbol"><i class="bi bi-plus" (click)="openAddList()"></i></div>
 </div>
 
 <div class="list-container">
@@ -29,7 +29,7 @@
         <tbody>
             <tr class="table-list-element" *ngFor="let list of listsAdded">
                 <td>
-                    <div><a class="blacknormal-text" routerLink="/list" [state]="{lista: list}">{{list.nombreLista}}</a></div>
+                    <div><a class="blacknormal-text" (click)="openList(list.idLista)">{{list.nombreLista}}</a></div>
                 </td>
                 <td>
                     <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
@@ -37,5 +37,5 @@
             </tr>
         </tbody>
     </table>
-    <div class="add-symbol"><i class="bi bi-plus"></i></div>
+    <div class="add-symbol"><i class="bi bi-plus" (click)="openAddList()"></i></div>
 </div>

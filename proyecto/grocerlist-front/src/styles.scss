@@ -1,3 +1,53 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// $grocerlist-brand: (
+//     50: #FEFAE0,
+//     100: #5F6F52,
+//     200: #A9B388,
+//     300: #B99470,
+//     400: #000000
+// );
+
+
+// // Define the palettes for your theme using the Material Design palettes available in palette.scss
+// // (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// // hue. Available color palettes: https://material.io/design/color/
+// $grocerlist-front-primary: mat.define-palette($grocerlist-brand, 50);
+// $grocerlist-front-accent: mat.define-palette($grocerlist-brand, 100);
+
+// // The warn palette is optional (defaults to red).
+// $grocerlist-front-warn: mat.define-palette(mat.$red-palette);
+
+// // Create the theme object. A theme consists of configurations for individual
+// // theming systems such as "color" or "typography".
+// $grocerlist-front-theme: mat.define-theme((
+//   color: (
+//     theme-type: light,
+//     primary: $grocerlist-front-primary,
+//     accent: $grocerlist-front-accent,
+//     warn: $grocerlist-front-warn,
+//   ),
+//   typography: (
+//     brand-family: 'Sofia Sans',
+//     bold-weight: 500
+//   ),
+//   density: -1
+// ));
+
+// // Include theme styles for core and each component used in your app.
+// // Alternatively, you can import and @include the theme mixins for each component
+// // that you are using.
+// @include mat.all-component-themes($grocerlist-front-theme);
+
 /* You can add global styles to this file, and also import other style files */
 @import url(hamburgers.css);
 
@@ -105,6 +155,17 @@ i:hover {
     margin-bottom: 20px;
 }
 
+.basic-input-no-edit {
+    background-color: #B99470;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: #000000 3px solid;
+    height: 30px;
+    width: 400px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
 .lightgreen-anchor {
     color: #A9B388;
     margin: 20px;
@@ -173,4 +234,50 @@ i:hover {
 .add-symbol{
     font-size: 3rem;
     text-align: center;
+}
+
+.user-symbol{
+    font-size: 10rem;
+    text-align: center;
+    margin-right: 50px;
+    margin-left: 30px;
+}
+
+.input-title{
+    background-color: #FEFAE0;
+    color: #5F6F52;
+    box-sizing: border-box;
+    border: none;
+    height: 50px;
+    font-size: 50px;
+    width: 90%;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-family: 'Sofia Sans';
+    font-weight: bold;
+}
+
+.title-form{
+    margin: 0;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-spacing: 10px;
+    tr>td:first-child{
+        width: 100%;
+    }
+    tr>td:last-child{
+        width: fit-content;
+    }
+    tr{
+        height: 60px;
+        border-radius: 15px;
+        box-shadow:  6px 6px 12px #e5e1ca,
+             -6px -6px 12px #FEFAE0;
+    }
+    tr>td{
+        padding-left: 20px;
+    }
+    tr{
+        margin-bottom: 10px;
+    }
 }

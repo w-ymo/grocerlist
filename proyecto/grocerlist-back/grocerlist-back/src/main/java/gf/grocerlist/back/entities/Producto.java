@@ -13,16 +13,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "producto")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Producto {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_producto")
 	private Long idProducto;
 	
@@ -37,6 +45,6 @@ public class Producto {
 	@JoinColumn(name = "id_almacenaje")
 	private TpAlmacenaje tpAlmacenaje;
 	
-	@ManyToMany(mappedBy = "productos", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	private Set<Lista> listas = new HashSet<>();
+	@OneToMany(mappedBy="producto", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	private Set<Incluye> listas = new HashSet<>();
 }

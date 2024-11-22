@@ -1,28 +1,44 @@
 <app-header-grocerlist [menu]="2" />
 
-<div>
+<div class="form-container">
     <form [formGroup]="editUserForm">
         <div>
+            <table>
+                <tr>
+                    <td>
+                        <div class="user-symbol"><i class="bi bi-person-circle"></i></div>
+                    </td>
+                    <td>
+                        <p for="username" class="form-subtitle-login">Nombre usuario</p>
+                        <input type="text" name="username" formControlName="nombreUsuario"
+                            [(ngModel)]="user.nombreUsuario" readonly [ngClass]="{'basic-input': editMode, 'basic-input-no-edit': !editMode}"/>
+                        <div>
+                            <p for="name" class="form-subtitle-login">Nombre</p>
+                            <input type="text" name="name" formControlName="nombre"
+                                [(ngModel)]="user.nombre" [readonly]="!editMode" [ngClass]="{'basic-input': editMode, 'basic-input-no-edit': !editMode}"/>
+                        </div>
+                        <div>
+                            <p for="lastname1" class="form-subtitle-login">Apellido 1</p>
+                            <input type="text" name="lastname1" formControlName="apellido1"
+                                [(ngModel)]="user.apellido1" [readonly]="!editMode" [ngClass]="{'basic-input': editMode, 'basic-input-no-edit': !editMode}"/>
+                        </div>
+                        <div>
+                            <p for="lastname2" class="form-subtitle-login">Apellido 2</p>
+                            <input type="text" name="lastname2" formControlName="apellido2"
+                                [(ngModel)]="user.apellido2" [readonly]="!editMode" [ngClass]="{'basic-input': editMode, 'basic-input-no-edit': !editMode}"/>
+                        </div>
+                    </td>
+                </tr>
+            </table>
             <div>
-                <label for="username">Nombre usuario</label>
-                <input type="text" name="username" formControlName="username" [(ngModel)]="user.nombreUsuario"/>
+                <button class="basicgreen-button" type="submit" (click)="toggleEdit()" *ngIf="!editMode">Editar</button>
             </div>
             <div>
-                <label for="name">Nombre</label>
-                <input type="text" name="name" formControlName="name" [(ngModel)]="user.nombre"/>
+                <button class="basicgreen-button" type="submit" (click)="edit()" *ngIf="editMode">Cambiar Datos</button>
             </div>
             <div>
-                <label for="lastname1">Apellido 1</label>
-                <input type="text" name="lastname1" formControlName="lastname1" [(ngModel)]="user.apellido1"/>
-            </div>
-            <div>
-                <label for="lastname2">Apellido 2</label>
-                <input type="text" name="lastname2" formControlName="lastname2" [(ngModel)]="user.apellido2"/>
-            </div>
-            <div>
-                <button type="submit">Submit</button>
+                <button class="basicgreen-button" type="button" (click)="logout()">Cerrar sesión</button>
             </div>
         </div>
     </form>
-
 </div>

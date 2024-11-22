@@ -1,4 +1,4 @@
-package gf.grocerlist.back.security;
+package gf.grocerlist.back.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthResponse {
-	String token;
+public class CategoriaResponse {
+
+	Long idCategoria;
+	String nombreCategoria;
+
 }

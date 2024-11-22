@@ -41,6 +41,10 @@ public class SecurityConfig {
 					authResquest
 					.requestMatchers(HttpMethod.OPTIONS).permitAll()
 					.requestMatchers("/auth/**").permitAll()
+						/*
+						 * .requestMatchers("/productos/**").permitAll()
+						 * .requestMatchers("/categoria/**").permitAll()
+						 */
 					.anyRequest().authenticated())
 				.formLogin(withDefaults())
 				.sessionManagement(sessionManager -> 

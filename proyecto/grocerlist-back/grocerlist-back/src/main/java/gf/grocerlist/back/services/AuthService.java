@@ -2,7 +2,7 @@ package gf.grocerlist.back.services;
 
 import gf.grocerlist.back.request.LoginRequest;
 import gf.grocerlist.back.request.RegisterRequest;
-import gf.grocerlist.back.security.AuthResponse;
+import gf.grocerlist.back.response.AuthResponse;
 
 public interface AuthService {
 

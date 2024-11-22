@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gf.grocerlist.back.request.LoginRequest;
 import gf.grocerlist.back.request.RegisterRequest;
-import gf.grocerlist.back.security.AuthResponse;
+import gf.grocerlist.back.response.AuthResponse;
 import gf.grocerlist.back.services.AuthService;
 
 @RestController

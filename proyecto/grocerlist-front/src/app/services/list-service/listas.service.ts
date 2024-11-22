@@ -19,28 +19,34 @@ export class ListasService extends BasicService{
   }
 
   getListasAdded(username: string): Observable<List> {
-    return this.http.get<List>(enviroment.apiURL + 'listas/obtener/seguidas/' + username).pipe(
+    return this.http.get<List>(enviroment.apiURL + 'api/listas/obtener/seguidas/' + username).pipe(
       catchError(this.handleError)
     );
   }
 
   getListasCreated(username: string): Observable<List> {
-    return this.http.get<List>(enviroment.apiURL + 'listas/obtener/creadas/' + username).pipe(
+    return this.http.get<List>(enviroment.apiURL + 'api/listas/obtener/creadas/' + username).pipe(
       catchError(this.handleError)
     );
   }
 
-  getProducts(list: List): Observable<Product> {
-    return this.http.get<Product>(enviroment.apiURL + 'listas/obtenerProductos/' + list.idLista).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  insertList(list: List): boolean{
-    this.lists = this.http.post<List>(enviroment.apiURL + 'listas/insertarLista', list).pipe(
+  insertList(list: List): Observable<List>{
+    this.lists = this.http.post<List>(enviroment.apiURL + 'api/listas/insertarLista', list).pipe(
       catchError(this.handleError)
     );
     return this.lists;
+  }
+
+  getById(id: number): Observable<List>{
+    return this.http.get<List>(enviroment.apiURL + 'api/listas/obtener/' + id).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updateById(list: List): Observable<List>{
+    return this.http.put<List>(enviroment.apiURL + 'api/listas/actualizar/' + list.idLista, list).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error:HttpErrorResponse){

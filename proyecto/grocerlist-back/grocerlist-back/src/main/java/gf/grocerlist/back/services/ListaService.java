@@ -4,17 +4,16 @@ import java.util.List;
 
 import gf.grocerlist.back.entities.Lista;
 import gf.grocerlist.back.entities.Producto;
+import gf.grocerlist.back.request.ListRequest;
+import gf.grocerlist.back.response.ListResponse;
 
 public interface ListaService {
 
-	boolean newList(Lista lista);
+	Lista newList(Lista lista);
 	List<Producto> getProducts(Long id);
-	boolean insertProduct(Producto producto, Lista lista);
-	boolean insertProducts(List<Producto> productos, Lista lista);
-	Lista getById(Long id);
+	ListResponse getById(Long id);
 	List<Lista> getByUser(String username);
-	List<Lista> getByCreatorUser(String username);
+	List<ListResponse> getByCreatorUser(String username);
 	boolean deleteList(Long id);
-	Lista updateProducts(List<Producto> nuevoProducto, Lista lista);
-	Lista updateList(Lista lista);
+	ListResponse updateList(ListRequest lista);
 }

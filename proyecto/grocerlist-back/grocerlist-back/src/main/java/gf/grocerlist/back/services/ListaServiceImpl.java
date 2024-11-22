@@ -9,46 +9,43 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import gf.grocerlist.back.entities.Incluye;
 import gf.grocerlist.back.entities.Lista;
 import gf.grocerlist.back.entities.Producto;
+import gf.grocerlist.back.entities.Usuario;
 import gf.grocerlist.back.repositories.ListaRepository;
+import gf.grocerlist.back.repositories.UsuarioRepository;
+import gf.grocerlist.back.request.ListRequest;
+import gf.grocerlist.back.response.ListResponse;
 
 @Service
-public class ListaServiceImpl implements ListaService{
+public class ListaServiceImpl implements ListaService {
 
 	@Autowired
 	private ListaRepository repo;
-	
+
+	@Autowired
+	private UsuarioRepository userRepo;
+
 	@Override
-	public boolean newList(Lista lista) {
-		repo.save(lista);
-		return false;
+	public Lista newList(Lista lista) {
+		if (lista.getIdLista() == 0) {
+			lista.setIdLista(null);
+		}
+		Optional<Usuario> optional = userRepo.findById(lista.getUsuarioCreador().getIdUsuario());
+		if (optional.isPresent()) {
+			lista.setUsuarioCreador(optional.get());
+		}
+		return repo.save(lista);
 	}
 
 	@Override
-	public boolean insertProduct(Producto producto, Lista lista) {
-		Set<Producto> productosSet = lista.getProductos();
-		productosSet.add(producto);
-		lista.setProductos(productosSet);
-		repo.save(lista);
-		return false;
-	}
-
-	@Override
-	public boolean insertProducts(List<Producto> productos, Lista lista) {
-		Set<Producto> productosSet = lista.getProductos();
-		productosSet.addAll(productos);
-		lista.setProductos(productosSet);
-		repo.save(lista);
-		return false;
-	}
-
-	@Override
-	public Lista getById(Long id) {
+	public ListResponse getById(Long id) {
 		Optional<Lista> optional = repo.findById(id);
-		return (optional.isPresent()) ? optional.get() : null;
+		Lista l = (optional.isPresent()) ? optional.get() : null;
+		ListResponse response = ListResponse.builder().idLista(l.getIdLista()).nombreLista(l.getNombreLista()).build();
+		return response;
 	}
-	
 
 	@Override
 	public boolean deleteList(Long id) {
@@ -57,16 +54,13 @@ public class ListaServiceImpl implements ListaService{
 	}
 
 	@Override
-	public Lista updateProducts(List<Producto> nuevoProducto, Lista lista) {
-		Set<Producto> productos = new HashSet<>();
-		productos.addAll(nuevoProducto);
-		lista.setProductos(productos);
-		return repo.save(lista);
-	}
-
-	@Override
-	public Lista updateList(Lista lista) {
-		return repo.save(lista);
+	public ListResponse updateList(ListRequest lista) {
+		Optional<Lista> optional = repo.findById(lista.getIdLista());
+		Lista l = (optional.isPresent()) ? optional.get() : null;
+		l.setNombreLista(lista.getNombreLista());
+		Lista listUpdated = repo.save(l);
+		ListResponse response = ListResponse.builder().idLista(listUpdated.getIdLista()).nombreLista(listUpdated.getNombreLista()).build();
+		return response;
 	}
 
 	@Override
@@ -75,8 +69,9 @@ public class ListaServiceImpl implements ListaService{
 	}
 
 	@Override
-	public List<Lista> getByCreatorUser(String username) {
-		return repo.getByUsuarioCreador(username);
+	public List<ListResponse> getByCreatorUser(String username) {
+		List<Lista> list = repo.getByUsuarioCreador(username);
+		return transformListasToListsResponses(list);
 	}
 
 	@Override
@@ -84,6 +79,15 @@ public class ListaServiceImpl implements ListaService{
 		return repo.getProducts(id);
 	}
 
+	private ListResponse transformListaToListResponse(Lista l) {
+		return ListResponse.builder().idLista(l.getIdLista()).nombreLista(l.getNombreLista()).build();
+	}
 	
-	
+	private List<ListResponse> transformListasToListsResponses(List<Lista> l){
+		List<ListResponse> finalList = new ArrayList<>();
+		l.forEach(list -> {
+			finalList.add(transformListaToListResponse(list));
+		});
+		return finalList;
+	}
 }
