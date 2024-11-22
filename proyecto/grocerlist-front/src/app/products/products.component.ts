@@ -31,22 +31,23 @@ export class ProductsComponent {
   productos: Product[];
 
   searchForm = this.formBuilder.group({
-    nombreProducto: [''],
-    categoria: []
+    nombreProducto: [],
+    idCategoria: []
   });
 
   get nombreProducto() {
     return this.searchForm.controls.nombreProducto;
   }
 
-  get categoria() {
-    return this.searchForm.controls.categoria;
+  get idCategoria() {
+    return this.searchForm.controls.idCategoria;
   }
 
   constructor(private productService: ProductsService, private categoriaService: CategoriaService, private loginService: LoginService, private formBuilder: FormBuilder) {
   }
 
   search() {
+    console.log(this.searchForm.value as FilterProduct);
     if (this.userLoginOn) {
       this.productService.getByFilter(this.searchForm.value as FilterProduct).subscribe({
         next: (data) => {

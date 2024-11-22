@@ -1,15 +1,18 @@
 <div class="background">
-    <form [formGroup]="searchForm">
-        <mat-form-field>
-            <input matInput placeholder="Nombre del producto" formControlName="nombreProducto">
-        </mat-form-field>
-        <mat-select placeholder="Categorias" [(ngModel)]="selectedCategoria" name="categoria" formControlName="categoria">
-            <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">
-                {{categoria.nombreCategoria}}
-            </mat-option>
-        </mat-select>
-        <button mat-button  class="basicgreen-button" (click)="search()">XD</button>
-    </form>
+    <div class="dropdown-symbol"><i class="bi bi-arrow-left"></i></div>
+    <div class="insert-container">
+        <form [formGroup]="searchForm" class="insert-form">
+            <mat-form-field>
+                <input matInput placeholder="Nombre del producto" formControlName="nombreProducto">
+            </mat-form-field>
+            <mat-select placeholder="Categorias" [(ngModel)]="selectedCategoria" name="categoria" formControlName="idCategoria" panelClass="topunit">
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria" class="option">
+                    {{categoria.nombreCategoria}}
+                </mat-option>
+            </mat-select>
+            <button class="basicgreen-button" (click)="search()">Buscar</button>
+        </form>
+    </div>
     <table class="table-list">
         <thead>
             <th>Producto</th>
@@ -20,5 +23,13 @@
             <td>{{producto.categoria.nombreCategoria}}</td>
         </tr>
     </table>
+    <div class="insert-container">
+        <form  class="insert-form">
+            <mat-form-field>
+                <input matInput placeholder="Cantidad">
+            </mat-form-field>
+            <button>Insertar</button>
+        </form>
+    </div>
 </div>
 
