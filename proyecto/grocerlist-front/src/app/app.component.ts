@@ -5,12 +5,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { InsertProductsScript } from './scripts/insertProducts';
 import { ProductsService } from './services/product-service/products.service';
 import { CategoriaService } from './services/categoria-service/categoria.service';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, RouterOutlet, HomeComponent, HttpClientModule],
+  imports: [RouterLink, RouterLinkActive, RouterOutlet, HomeComponent, HttpClientModule, MatFormField, MatSelectModule, MatMenuModule, MatIconModule, MatButtonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

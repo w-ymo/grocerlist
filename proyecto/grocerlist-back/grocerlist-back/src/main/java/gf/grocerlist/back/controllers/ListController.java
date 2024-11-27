@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,12 +52,17 @@ public class ListController {
 	
 	@GetMapping("/obtener/{id}")
 	public ResponseEntity<ListResponse> getById(@PathVariable Long id) {
-		return ResponseEntity.ok(service.getById(id));
+		return ResponseEntity.ok(service.getByIdResponse(id));
 	}
 	
 	@PutMapping("/actualizar/{id}")
 	public ResponseEntity<ListResponse> updateById(@PathVariable Long id, @RequestBody ListRequest lista){
 		return ResponseEntity.ok(service.updateList(lista));
+	}
+
+	@DeleteMapping("/delete/{idLista}")
+	public boolean deleteList(@PathVariable Long idLista){
+		return service.deleteList(idLista);
 	}
 	
 }

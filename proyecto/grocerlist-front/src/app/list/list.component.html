@@ -1,73 +1,123 @@
-<app-header-grocerlist [menu]="2"/>
+<app-header-grocerlist [menu]="2" />
+<p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
 <div class="list-container">
     <form [formGroup]="titleListForm">
         <table class="title-form">
             <tbody>
                 <tr>
                     <td>
-                        <input type="text" class="input-title" [(ngModel)]="list.nombreLista" formControlName="title" name="nombreLista" [readonly]="!editMode">
+                        <input type="text" [ngClass]="{'input-title': editMode, 'input-title-no-edit': !editMode}"
+                            [(ngModel)]="list.nombreLista" formControlName="title" name="nombreLista"
+                            [readonly]="!editMode">
                     </td>
                     <td>
-                        <div class="dropdown-symbol"><i class="bi bi-pen-fill" (click)="toggleEdit()" [hidden]="editMode"></i></div>
-                        <div class="dropdown-symbol"><i class="bi bi-check" (click)="editTitle()" [hidden]="!editMode"></i></div>
+                        <div class="dropdown-symbol"><i class="bi bi-pencil-square" (click)="toggleEdit()"
+                                [hidden]="editMode"></i></div>
+                        <div class="dropdown-symbol"><i class="bi bi-check" (click)="editTitle()"
+                                [hidden]="!editMode"></i></div>
                     </td>
                     <td>
-                        <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                        <div>
+                            <button [matMenuTriggerFor]="menu" aria-label="Menu productos">
+                                <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                            </button>
+                            <mat-menu #menu="matMenu" class="menu-panel">
+                                <button mat-menu-item (click)="toggleEdit()">
+                                    <span>Editar</span>
+                                </button>
+                                <button mat-menu-item (click)="deleteList()" *ngIf="esPropietario">
+                                    <span>Eliminar</span>
+                                </button>
+                                <button mat-menu-item (click)="shareList()" *ngIf="esPropietario">
+                                    <span>Compartir</span>
+                                </button>
+                            </mat-menu>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </form>
-    <h3>Productos</h3>
-    <div class="add-symbol"><i class="bi bi-plus" (click)="openAddProduct()"></i></div>
-    <table class="table-list">
+    <div class="add-prod-symbol">
+        <h3 class="subtitle-text">Productos</h3><i class="bi bi-plus" (click)="openAddProduct()"></i>
+    </div>
+    <table class="table-list-check">
         <tbody>
             <tr class="table-list-element" *ngFor="let producto of productosNotAdded">
                 <td>
-                    <mat-checkbox [(ngModel)]="producto.added" name="productAdded" (click)="toggleAdded(producto)"></mat-checkbox>
+                    <mat-checkbox [(ngModel)]="producto.added" name="productAdded"
+                        (click)="toggleAdded(producto)"></mat-checkbox>
                 </td>
                 <td>
                     <div><a class="blacknormal-text">{{producto.producto.nombreProducto}}</a></div>
-                </td>  
-                <td>
-                    <div><a class="blacknormal-text">cantidad</a></div>
                 </td>
                 <td>
                     <div>
-                        <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
-                        <div id="myDropdown" class="dropdown-content">
-                            <a href="#home">Home</a>
-                            <a href="#about">About</a>
-                            <a href="#contact">Contact</a>
-                        </div>
+                        <input type="number" class="basic-input" [(ngModel)]="producto.cantidad" name="nombreLista"
+                            [readonly]="!producto.editMode">
                     </div>
+                </td>
+                <td>
+                    @if (producto.editMode){
+                        <div class="options-class">
+                            <mat-select class="blacknormal-text"
+                                [(ngModel)]="producto.tpAlmacenaje.idAlmacenaje" name="almacenaje" panelClass="options-panel" >
+                                <mat-option *ngFor="let almacenaje of almacenajes" [value]="almacenaje.idAlmacenaje">
+                                    {{almacenaje.unidadesAlmacenaje}}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                    }
+                    @else {
+                        <a class="blacknormal-text">{{producto.tpAlmacenaje.unidadesAlmacenaje}}</a>
+                    }
+
+                </td>
+                <td>
+                    @if(producto.editMode){
+                        <div class="dropdown-symbol">
+                            <i class="bi bi-check" (click)="editProduct(producto)"></i>
+                        </div>
+                    }@else{
+                        <div>
+                            <button [matMenuTriggerFor]="menuProducto" aria-label="Menu productos">
+                                <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                            </button>
+                            <mat-menu #menuProducto="matMenu" class="menu-panel">
+                                <button mat-menu-item (click)="toggleEditProduct(producto)">
+                                    <i class="bi bi-pencil-square"></i>
+                                    <span> Editar</span>
+                                </button>
+                                <button mat-menu-item (click)="deleteProduct(producto)">
+                                    <i class="bi bi-trash3-fill"></i>
+                                    <span> Eliminar</span>
+                                </button>
+                            </mat-menu>
+                        </div>
+                    }
+
+
                 </td>
             </tr>
         </tbody>
     </table>
     <div *ngIf="productSize">
-        <h3>Productos Comprados</h3>
-        <table class="table-list">
+        <h3 class="subtitle-text">Productos Comprados</h3>
+        <table class="table-list-check">
             <tbody>
                 <tr class="table-list-element" *ngFor="let producto of productosAdded">
                     <td>
-                        <mat-checkbox [(ngModel)]="producto.added" name="productNotAdded" (click)="toggleAdded(producto)"></mat-checkbox>
+                        <mat-checkbox [(ngModel)]="producto.added" name="productNotAdded"
+                            (click)="toggleAdded(producto)"></mat-checkbox>
                     </td>
                     <td>
                         <div><a class="blacknormal-text">{{producto.producto.nombreProducto}}</a></div>
                     </td>
                     <td>
-                        <div><a class="blacknormal-text">cantidad</a></div>
+                        <div><a class="blacknormal-text">{{producto.cantidad}}</a></div>
                     </td>
                     <td>
-                        <div>
-                            <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
-                            <div id="myDropdown" class="dropdown-content">
-                                <a href="#home">Home</a>
-                                <a href="#about">About</a>
-                                <a href="#contact">Contact</a>
-                            </div>
-                        </div>
+                        <div><a class="blacknormal-text">{{producto.tpAlmacenaje.unidadesAlmacenaje}}</a></div>
                     </td>
                 </tr>
             </tbody>

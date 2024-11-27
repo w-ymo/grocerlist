@@ -1,4 +1,5 @@
 <app-header-grocerlist [menu]="2" />
+<p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
 <div class="list-container">
     <h1>LISTAS PROPIAS</h1>
     <table class="table-list">
@@ -9,12 +10,20 @@
                 </td>
                 <td>
                     <div>
-                        <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
-                        <div id="myDropdown" class="dropdown-content">
-                            <a routerLink="/list" [state]="{lista: list}">Editar</a>
-                            <a href="#about">Antonio</a>
-                            <a href="#contact">Tumadre</a>
-                          </div>
+                        <button [matMenuTriggerFor]="menu" aria-label="Menu productos" class="default-button">
+                            <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                        </button>
+                        <mat-menu #menu="matMenu" class="menu-panel">
+                            <button mat-menu-item (click)="openList(list.idLista)">
+                                <span>Editar</span>
+                            </button>
+                            <button mat-menu-item (click)="deleteList(list)">
+                                <span>Eliminar</span>
+                            </button>
+                            <button mat-menu-item (click)="shareList(list)">
+                                <span>Compartir</span>
+                            </button>
+                        </mat-menu>
                     </div>
                 </td>
             </tr>
@@ -32,7 +41,16 @@
                     <div><a class="blacknormal-text" (click)="openList(list.idLista)">{{list.nombreLista}}</a></div>
                 </td>
                 <td>
-                    <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                    <div>
+                        <button [matMenuTriggerFor]="menu" aria-label="Menu productos" class="default-button">
+                            <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
+                        </button>
+                        <mat-menu #menu="matMenu" class="menu-panel">
+                            <button mat-menu-item (click)="openList(list.idLista)">
+                                <span>Editar</span>
+                            </button>
+                        </mat-menu>
+                    </div>
                 </td>
             </tr>
         </tbody>

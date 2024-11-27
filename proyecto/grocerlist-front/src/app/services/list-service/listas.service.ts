@@ -7,6 +7,7 @@ import { List } from '../../models/list';
 import { BasicService } from '../basic.service';
 import { Product } from '../../models/product';
 import { enviroment } from '../../../enviroment/enviroment';
+import { Incluye } from '../../models/incluye';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,14 @@ export class ListasService extends BasicService{
     super();
   }
 
-  getListasAdded(username: string): Observable<List> {
-    return this.http.get<List>(enviroment.apiURL + 'api/listas/obtener/seguidas/' + username).pipe(
+  getListasAdded(username: string): Observable<List[]> {
+    return this.http.get<List[]>(enviroment.apiURL + 'api/listas/obtener/seguidas/' + username).pipe(
       catchError(this.handleError)
     );
   }
 
-  getListasCreated(username: string): Observable<List> {
-    return this.http.get<List>(enviroment.apiURL + 'api/listas/obtener/creadas/' + username).pipe(
+  getListasCreated(username: string): Observable<List[]> {
+    return this.http.get<List[]>(enviroment.apiURL + 'api/listas/obtener/creadas/' + username).pipe(
       catchError(this.handleError)
     );
   }
@@ -49,15 +50,11 @@ export class ListasService extends BasicService{
     );
   }
 
-  private handleError(error:HttpErrorResponse){
-    if(error.status===0){
-      console.error('Se ha producio un error ', error);
-    }
-    else{
-      console.error('Backend retornó el código de estado ', error.status, error.error);
-    }
-    return throwError(()=> new Error('Algo falló. Por favor intente nuevamente.'));
+  deleteList(idList: number): Observable<boolean>{
+    return this.http.delete<boolean>(enviroment.apiURL + 'api/listas/delete/' + idList).pipe(
+      catchError(this.handleError)
+    );
   }
 
-
+  //generar url de compartir
 }

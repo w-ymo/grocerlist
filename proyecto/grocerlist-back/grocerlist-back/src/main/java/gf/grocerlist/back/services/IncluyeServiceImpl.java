@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import gf.grocerlist.back.entities.Incluye;
+import gf.grocerlist.back.entities.Lista;
 import gf.grocerlist.back.entities.Producto;
 import gf.grocerlist.back.entities.ProductoListaId;
 import gf.grocerlist.back.repositories.IncluyeRepository;
 import gf.grocerlist.back.request.IncluyeAddedRequest;
 import gf.grocerlist.back.request.IncluyeRequest;
+import gf.grocerlist.back.request.ProductRequest;
 import gf.grocerlist.back.response.IncluyeResponse;
 import gf.grocerlist.back.response.ProductResponse;
 
@@ -32,7 +34,7 @@ public class IncluyeServiceImpl implements IncluyeService {
 				.idProducto(incluye.getId().getIdProducto()).added(incluye.getAdded()).cantidad(incluye.getCantidad())
 				.producto(ProductResponse.builder().idProducto(incluye.getProducto().getIdProducto())
 						.nombreProducto(incluye.getProducto().getNombreProducto()).build())
-				.build();
+				.tpAlmacenaje(incluye.getTpAlmacenaje()).build();
 		return response;
 	}
 
@@ -57,9 +59,28 @@ public class IncluyeServiceImpl implements IncluyeService {
 		if (optional.isPresent()) {
 			incluye = optional.get();
 			incluye.setAdded(request.getAdded());
+			incluye.setCantidad(request.getCantidad());
+			incluye.setTpAlmacenaje(request.getTpAlmacenaje());
 			repo.save(incluye);
 		}
 		return transformIncluyeToIncluyeResponse(incluye);
+	}
+
+	@Override
+	public IncluyeResponse insertProduct(IncluyeRequest request, Producto producto, Lista lista) {
+		Incluye incluye = request.transform(lista, producto);
+		return transformIncluyeToIncluyeResponse(repo.save(incluye));
+	}
+
+	@Override
+	public boolean deleteProduct(ProductoListaId id){
+		try {
+			repo.deleteById(id);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
 	}
 
 }

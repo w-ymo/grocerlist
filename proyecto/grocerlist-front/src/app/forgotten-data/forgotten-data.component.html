@@ -1,1 +1,17 @@
-<p>forgotten-data works!</p>
+<app-header-grocerlist [menu]="0"></app-header-grocerlist>
+<div class="background-img">
+    <div class="form-container">
+        <h1>Datos olvidados</h1>
+        <form [formGroup]="registerForm">
+            <div>
+                <p class="form-subtitle-login">E-mail</p>
+                <input class="basic-input" type="text" name="email" formControlName="email">
+                <br>
+                <div>
+                    <button type="submit" class="basicgreen-button" (click)="register()">Enviar</button>
+                </div>
+                <p class="margin-bottom"></p>
+            </div>
+        </form>
+    </div>
+</div>

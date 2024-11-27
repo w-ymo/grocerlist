@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { HeaderGrocerlistComponent } from '../header-grocerlist/header-grocerlist.component';
 import { Router, RouterLink } from '@angular/router';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../services/login-service/login.service';
 import { RegisterRequest } from '../models/registerReq';
 import { passwordMatchingValidatior } from '../validators/passwordMatchingValidator';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [HeaderGrocerlistComponent, RouterLink, ReactiveFormsModule],
+  imports: [HeaderGrocerlistComponent, RouterLink, ReactiveFormsModule, NgIf, FormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

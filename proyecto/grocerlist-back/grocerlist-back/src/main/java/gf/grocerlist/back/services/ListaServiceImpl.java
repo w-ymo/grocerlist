@@ -40,17 +40,28 @@ public class ListaServiceImpl implements ListaService {
 	}
 
 	@Override
-	public ListResponse getById(Long id) {
+	public ListResponse getByIdResponse(Long id) {
 		Optional<Lista> optional = repo.findById(id);
 		Lista l = (optional.isPresent()) ? optional.get() : null;
 		ListResponse response = ListResponse.builder().idLista(l.getIdLista()).nombreLista(l.getNombreLista()).build();
 		return response;
 	}
+	
+	@Override
+	public Lista getById(Long id) {
+		Optional<Lista> optional = repo.findById(id);
+		Lista l = (optional.isPresent()) ? optional.get() : null;
+		return l;
+	}
 
 	@Override
 	public boolean deleteList(Long id) {
-		repo.deleteById(id);
-		return false;
+		try{
+			repo.deleteById(id);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
 	}
 
 	@Override

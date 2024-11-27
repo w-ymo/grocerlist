@@ -17,7 +17,6 @@ INDEX VERSION 1.134+H:\tfc\grocerlist\proyecto\grocerlist-back\.metadata\.plugin
 2053041063.index
 2288766966.index
 961422825.index
-3113552507.index
 3233867962.index
 3348597841.index
 2282869197.index

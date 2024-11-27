@@ -15,6 +15,7 @@ import { NgClass, NgIf } from '@angular/common';
 })
 export class AccountComponent {
 
+  errorMessage="";
   editUserForm=this.formBuilder.group({
     nombreUsuario:['',[Validators.required]],
     nombre:[''],

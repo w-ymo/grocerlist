@@ -1,8 +1,9 @@
 <app-header-grocerlist [menu]="0"></app-header-grocerlist>
 <div class="background-img">
     <div class="form-container">
-        <h1>Iniciar sesion</h1>
+        <h1>Registro</h1>
         <form [formGroup]="registerForm">
+            <p class="error" *ngIf="registerError">{{registerError}}</p>
             <div>
                 <p class="form-subtitle-login">Nombre de usuario</p>
                 <input class="basic-input" type="text" name="username" formControlName="username">

@@ -15,11 +15,17 @@ import { MatDialog } from '@angular/material/dialog';
 import { Product } from '../models/product';
 import { ProductsComponent } from '../products/products.component';
 import { LoginService } from '../services/login-service/login.service';
+import { TpAlmacenaje } from '../models/tpAlmacenaje';
+import { TpAlmacenajeService } from '../services/tpAlmacenaje-service/tp-almacenaje.service';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule, HttpClientModule, RouterLink, FormsModule, ReactiveFormsModule, MatCheckboxModule],
+  imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule, HttpClientModule, RouterLink, FormsModule, ReactiveFormsModule, MatCheckboxModule, MatSelectModule, MatButtonModule, MatMenuModule, MatIconModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
@@ -27,9 +33,13 @@ export class ListComponent {
 
   userLoginOn: boolean = false;
 
+  esPropietario: boolean = false;
+
   list: List;
   productosAdded: Incluye[];
   productosNotAdded: Incluye[];
+
+  almacenajes: TpAlmacenaje[];
 
   productSize: boolean;
 
@@ -45,7 +55,8 @@ export class ListComponent {
 
   editMode: boolean = false;
 
-  constructor(private listService: ListasService, private formBuilder: FormBuilder, private router: Router, private incluyeService: IncluyeService, private loginService: LoginService) {
+  constructor(private listService: ListasService, private formBuilder: FormBuilder, private router: Router, private incluyeService: IncluyeService, private loginService: LoginService,
+    private tpAlmacenajeService: TpAlmacenajeService) {
   }
 
   toggleEdit() {
@@ -53,7 +64,6 @@ export class ListComponent {
   }
 
   toggleAdded(producto: Incluye) {
-    console.log(producto.added);
     this.incluyeService.updateIncluye(producto).subscribe({
       next: (data) => {
         console.log(data);
@@ -64,7 +74,57 @@ export class ListComponent {
       complete: () => {
         this.getProducts();
       }
-    })
+    });
+  }
+
+  editProduct(producto: Incluye){
+    this.incluyeService.updateIncluye(producto).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (errorData) => {
+        this.errorMessage = errorData;
+      },
+      complete: () => {
+        this.getProducts();
+      }
+    });
+  }
+
+  toggleEditProduct(producto: Incluye){
+    producto.editMode = true;
+  }
+
+  deleteProduct(producto: Incluye){
+    this.incluyeService.deleteIncluye(producto.idLista, producto.idProducto).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (errorData) => {
+        this.errorMessage = errorData;
+      },
+      complete: () => {
+        this.getProducts();
+      }
+    });
+  }
+
+  deleteList(){
+    this.listService.deleteList(this.list.idLista).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (errorData) => {
+        this.errorMessage = errorData;
+      },
+      complete: () => {
+        this.router.navigateByUrl("/list-of-list")
+      }
+    });
+  }
+
+  shareList(){
+
   }
 
   editTitle() {
@@ -87,6 +147,21 @@ export class ListComponent {
       alert("Error al ingresar los datos.");
     }
     this.editMode = false;
+  }
+
+  getAlmacenaje() {
+    this.tpAlmacenajeService.getAll().subscribe({
+      next: (data) => {
+        this.almacenajes = data;
+        console.log(data);
+      },
+      error: (error) => {
+        this.errorMessage = error;
+      },
+      complete: () => {
+        console.info("Almacenajes recuperados");
+      }
+    });
   }
 
   getList() {
@@ -126,7 +201,7 @@ export class ListComponent {
       },
       complete: () => {
         this.isProductSize();
-        console.info("productos aniadidos recuperados");
+        console.info("Productos aniadidos recuperados");
       }
     });
 
@@ -139,7 +214,7 @@ export class ListComponent {
         this.errorMessage = error;
       },
       complete: () => {
-        console.info("productos no aniadidos recuperados");
+        console.info("Productos no aniadidos recuperados");
       }
     });
   }
@@ -155,7 +230,11 @@ export class ListComponent {
       }
     });
     if (this.userLoginOn) {
+      this.esPropietario = sessionStorage.getItem("currentListPropetary") == 'true' ? true : false;
       this.getList();
+      this.getAlmacenaje();
+    }else{
+      this.router.navigateByUrl('');
     }
   }
 

@@ -7,17 +7,20 @@ import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../services/user-service/user.service';
 import { LoginService } from '../services/login-service/login.service';
 import { User } from '../models/user';
+import { MatMenuModule } from '@angular/material/menu';
+import { List } from '../models/list';
 
 @Component({
   selector: 'app-list-of-list',
   standalone: true,
-  imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule, RouterLink],
+  imports: [HeaderGrocerlistComponent, SideMenuComponent, CommonModule, RouterLink, MatMenuModule],
   templateUrl: './list-of-list.component.html',
   styleUrl: './list-of-list.component.scss'
 })
 export class ListOfListComponent {
 
   userLoginOn: boolean = false;
+  username: string | null;
 
   errorMessage: String = "";
 
@@ -25,8 +28,8 @@ export class ListOfListComponent {
 
   constructor(private loginService: LoginService, private listService: ListasService, private userService: UserService, private router: Router) { }
 
-  listsAdded: any;
-  listsCreated: any;
+  listsAdded: List[];
+  listsCreated: List[];
 
   openAddList(): void {
     this.listService.insertList({
@@ -35,7 +38,6 @@ export class ListOfListComponent {
       usuarioCreador: this.user
     }).subscribe({
       next: (data) => {
-        console.log('INSERTOOOOOOO');
         console.log(data);
         sessionStorage.removeItem("currentList");
         sessionStorage.setItem("currentList", data.idLista as unknown as string);
@@ -47,7 +49,63 @@ export class ListOfListComponent {
   openList(idLista: number) {
     sessionStorage.removeItem("currentList");
     sessionStorage.setItem("currentList", idLista as unknown as string);
+    if (this.listsCreated.findIndex(lista => lista.idLista === idLista) != -1) {
+      sessionStorage.removeItem("currentListPropetary");
+      sessionStorage.setItem("currentListPropetary", 'true');
+    }
     this.router.navigateByUrl('/list');
+  }
+
+  deleteList(list: List){
+    this.listService.deleteList(list.idLista).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (error) => {
+        this.errorMessage = error;
+      },
+      complete: () => {
+        console.info("Lista eliminada");
+        this.getLists();
+      }
+    });
+  }
+
+  shareList(list: List){
+
+  }
+
+  getListAdded(){
+    this.listService.getListasAdded(this.username as string).subscribe({
+      next: (l) => {
+        this.listsAdded = l;
+      },
+      error: (error) => {
+        this.errorMessage = error;
+      },
+      complete: () => {
+        console.info("Listas aniadidas ok");
+      }
+    });
+  }
+
+  getListCreated(){
+    this.listService.getListasCreated(this.username as string).subscribe({
+      next: (l) => {
+        this.listsCreated = l;
+      },
+      error: (error) => {
+        this.errorMessage = error;
+      },
+      complete: () => {
+        console.info("Listas creadas ok");
+      }
+    });
+  }
+
+  getLists(){
+    this.getListAdded();
+    this.getListCreated();
   }
 
   ngOnInit(): void {
@@ -55,9 +113,9 @@ export class ListOfListComponent {
       next: (userLoginOn) => {
         this.userLoginOn = userLoginOn;
 
-        var username: string | null = sessionStorage.getItem("username");
+        this.username = sessionStorage.getItem("username");
 
-        this.userService.getUserByUsername(username as string).subscribe({
+        this.userService.getUserByUsername(this.username as string).subscribe({
           next: (user) => {
             this.user = user;
           },
@@ -71,29 +129,10 @@ export class ListOfListComponent {
 
         if (this.userLoginOn) {
 
-          this.listService.getListasAdded(username as string).subscribe({
-            next: (l) => {
-              this.listsAdded = l;
-            },
-            error: (error) => {
-              this.errorMessage = error;
-            },
-            complete: () => {
-              console.info("Listas aniadidas ok");
-            }
-          });
+          this.getLists();
 
-          this.listService.getListasCreated(username as string).subscribe({
-            next: (l) => {
-              this.listsCreated = l;
-            },
-            error: (error) => {
-              this.errorMessage = error;
-            },
-            complete: () => {
-              console.info("Listas creadas ok");
-            }
-          });
+        } else {
+          this.router.navigateByUrl('');
         }
       }
     });

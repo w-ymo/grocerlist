@@ -41,10 +41,6 @@ public class Producto {
     @JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_almacenaje")
-	private TpAlmacenaje tpAlmacenaje;
-	
 	@OneToMany(mappedBy="producto", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private Set<Incluye> listas = new HashSet<>();
 }

@@ -34,14 +34,4 @@ export class ProductsService extends BasicService {
     );
   }
 
-  private handleError(error:HttpErrorResponse){
-    if(error.status===0){
-      console.error('Se ha producio un error ', error);
-    }
-    else{
-      console.error('Backend retornó el código de estado ', error.status, error.error);
-    }
-    return throwError(()=> new Error('Algo falló. Por favor intente nuevamente.'));
-  }
-
 }

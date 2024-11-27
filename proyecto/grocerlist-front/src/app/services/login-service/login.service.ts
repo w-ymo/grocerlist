@@ -51,16 +51,6 @@ export class LoginService extends BasicService{
     this.currentUserLoginOn.next(false);
   }
 
-  private handleError(error:HttpErrorResponse){
-    if(error.status===0){
-      console.error('Se ha producio un error ', error);
-    }
-    else{
-      console.error('Backend retornó el código de estado ', error);
-    }
-    return throwError(()=> new Error('Algo falló. Por favor intente nuevamente.'));
-  }
-
   get userData():Observable<String>{
     return this.currentUserData.asObservable();
   }

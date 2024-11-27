@@ -39,4 +39,8 @@ public class Incluye {
 	
 	private Long cantidad;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_almacenaje")
+	private TpAlmacenaje tpAlmacenaje;
+	
 }

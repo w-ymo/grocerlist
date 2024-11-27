@@ -3,6 +3,7 @@ package gf.grocerlist.back.response;
 import java.util.List;
 
 import gf.grocerlist.back.entities.Producto;
+import gf.grocerlist.back.entities.TpAlmacenaje;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,4 +20,5 @@ public class IncluyeResponse {
 	Long cantidad;
 	Boolean added;
 	ProductResponse producto;
+	TpAlmacenaje tpAlmacenaje;
 }

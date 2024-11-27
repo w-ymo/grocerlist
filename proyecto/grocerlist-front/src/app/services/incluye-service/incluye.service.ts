@@ -1,17 +1,20 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Incluye } from '../../models/incluye';
+import { Incluye, IncluyeProduct } from '../../models/incluye';
 import { catchError, Observable, throwError } from 'rxjs';
 import { enviroment } from '../../../enviroment/enviroment';
 import { Product } from '../../models/product';
 import { IncluyeAdded } from '../../models/incluyeAdded';
+import { BasicService } from '../basic.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IncluyeService {
+export class IncluyeService extends BasicService{
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    super();
+  }
 
   getAllProducts(req: IncluyeAdded): Observable<Incluye[]> {
     return this.http.post<Incluye[]>(enviroment.apiURL + 'api/incluye/obtener', req).pipe(
@@ -25,14 +28,15 @@ export class IncluyeService {
     );
   }
 
-  private handleError(error:HttpErrorResponse){
-    if(error.status===0){
-      console.error('Se ha producio un error ', error);
-    }
-    else{
-      console.error('Backend retornó el código de estado ', error.status, error.error);
-    }
-    return throwError(()=> new Error('Algo falló. Por favor intente nuevamente.'));
+  insertProduct(incluye: IncluyeProduct): Observable<Incluye>{
+    return this.http.post<Incluye>(enviroment.apiURL + 'api/incluye/insertProduct', incluye).pipe(
+      catchError(this.handleError)
+    );
   }
 
+  deleteIncluye(idLista: number, idProducto: number):Observable<boolean>{
+    return this.http.delete<boolean>(enviroment.apiURL + 'api/incluye/delete/'+idLista+'/'+idProducto).pipe(
+      catchError(this.handleError)
+    );
+  }
 }

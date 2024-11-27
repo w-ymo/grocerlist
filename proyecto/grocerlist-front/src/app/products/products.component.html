@@ -1,11 +1,12 @@
 <div class="background">
-    <div class="dropdown-symbol"><i class="bi bi-arrow-left"></i></div>
+    <div class="back-symbol"><i class="bi bi-arrow-left" (click)="goBack()"></i></div>
+    <p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
     <div class="insert-container">
         <form [formGroup]="searchForm" class="insert-form">
             <mat-form-field>
-                <input matInput placeholder="Nombre del producto" formControlName="nombreProducto">
+                <input matInput placeholder="Nombre del producto" class="basic-input" formControlName="nombreProducto">
             </mat-form-field>
-            <mat-select placeholder="Categorias" [(ngModel)]="selectedCategoria" name="categoria" formControlName="idCategoria" panelClass="topunit">
+            <mat-select placeholder="Categorias" [(ngModel)]="selectedCategoria" name="categoria" formControlName="idCategoria" panelClass="options-panel">
                 <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria" class="option">
                     {{categoria.nombreCategoria}}
                 </mat-option>
@@ -18,18 +19,10 @@
             <th>Producto</th>
             <th>Categoria</th>
         </thead>
-        <tr *ngFor="let producto of productos">
+        <tr *ngFor="let producto of productos" (click)="setCurrentProduct(producto)" >
             <td>{{producto.nombreProducto}}</td>
             <td>{{producto.categoria.nombreCategoria}}</td>
         </tr>
     </table>
-    <div class="insert-container">
-        <form  class="insert-form">
-            <mat-form-field>
-                <input matInput placeholder="Cantidad">
-            </mat-form-field>
-            <button>Insertar</button>
-        </form>
-    </div>
 </div>
 
