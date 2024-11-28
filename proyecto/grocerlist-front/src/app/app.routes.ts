@@ -7,6 +7,7 @@ import { ListOfListComponent } from './list-of-list/list-of-list.component';
 import { ListComponent } from './list/list.component';
 import { AccountComponent } from './account/account.component';
 import { ProductsComponent } from './products/products.component';
+import { ShareListComponent } from './share-list/share-list.component';
 
 
 export const routes: Routes = [ 
@@ -18,7 +19,8 @@ export const routes: Routes = [
         { path: 'list-of-list', component: ListOfListComponent},
         { path: 'list', component: ListComponent},
         { path: 'account', component: AccountComponent},
-        { path: 'products', component: ProductsComponent}
+        { path: 'products', component: ProductsComponent},
+        { path: 'share', component: ShareListComponent}
       ];
       
   export class AppRoutingModule { }      

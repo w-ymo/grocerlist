@@ -29,11 +29,12 @@ import { Router } from '@angular/router';
 export class ProductsComponent {
 
   errorMessage="";
+  noResults=false;
 
   userLoginOn: boolean = false;
 
   categorias: Categoria[];
-  selectedCategoria: number;
+  selectedCategoria: Categoria;
 
   list: List;
 
@@ -67,6 +68,7 @@ export class ProductsComponent {
   }
 
   search() {
+    this.noResults=false;
     console.log(this.searchForm.value as FilterProduct);
     if (this.userLoginOn) {
       this.productService.getByFilter(this.searchForm.value as FilterProduct).subscribe({
@@ -76,6 +78,11 @@ export class ProductsComponent {
         },
         error: (errorData) => {
           this.errorMessage = errorData;
+        },
+        complete: () =>{
+          if(this.productos == null){
+            this.noResults = true;
+          }
         }
       });
     }
@@ -86,7 +93,8 @@ export class ProductsComponent {
     var incluye: IncluyeProduct = {
       idLista: this.list.idLista,
       idProducto: this.currentProduct.idProducto,
-      cantidad: 4000,
+      cantidad: 0,
+      tpAlmacenaje: 5,
       added: false
     };
     this.incluyeService.insertProduct(incluye).subscribe({

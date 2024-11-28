@@ -21,6 +21,7 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { ShareListComponent } from '../share-list/share-list.component';
 
 @Component({
   selector: 'app-list',
@@ -56,7 +57,7 @@ export class ListComponent {
   editMode: boolean = false;
 
   constructor(private listService: ListasService, private formBuilder: FormBuilder, private router: Router, private incluyeService: IncluyeService, private loginService: LoginService,
-    private tpAlmacenajeService: TpAlmacenajeService) {
+    private tpAlmacenajeService: TpAlmacenajeService, private dialog: MatDialog) {
   }
 
   toggleEdit() {
@@ -124,7 +125,7 @@ export class ListComponent {
   }
 
   shareList(){
-
+      this.dialog.open(ShareListComponent);
   }
 
   editTitle() {

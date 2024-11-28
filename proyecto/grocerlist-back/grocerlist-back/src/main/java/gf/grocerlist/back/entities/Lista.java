@@ -55,8 +55,8 @@ public class Lista {
 	//many to many a lista
 	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinTable(name = "tiene", joinColumns = { @JoinColumn(name = "id_lista") }, inverseJoinColumns = {
-			@JoinColumn(name = "nombre_usuario") })
+			@JoinColumn(name = "id_usuario") })
 	@JsonIgnore
-	private Set<Usuario> usuarios = new HashSet<>();
+	private Set<Usuario> usuarios = new HashSet<>(); 
 	
 }

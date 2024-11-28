@@ -103,13 +103,20 @@ i:hover {
     padding: 10px;
     border-radius: 10px;
     color: #FFFFFF;
+    font-family: 'Sofia Sans';
 }
 
 .basicgreen-button {
     background-color: #5F6F52;
-    padding: 10px;
+    padding: 5px;
     border-radius: 10px;
     color: #FFFFFF;
+    font-family: 'Sofia Sans';
+    font-size: 20px;
+}
+
+.buscar-button{
+    font-size: 30px;
 }
 
 .header {
@@ -191,6 +198,31 @@ i:hover {
     margin-bottom: 20px;
 }
 
+.basic-input-cant {
+    background-color: #FEFAE0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: #000000 3px solid;
+    font-size: 30px;
+    font-family: 'Sofia Sans';
+    height: 50px;
+    width: 100px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.basic-input-cant-no-edit {
+    background-color: #FEFAE0;
+    box-sizing: border-box;
+    border: none;
+    font-size: 30px;
+    font-family: 'Sofia Sans';
+    height: 50px;
+    width: 100px;
+    font-weight: bolder;
+    text-align: center;
+}
+
 .lightgreen-anchor {
     color: #A9B388;
     margin: 20px;
@@ -258,7 +290,7 @@ i:hover {
     border-spacing: 10px;
 
     tr>td {
-        width: 60%;
+        width: 100%;
     }
 
     tr>td:first-child {
@@ -300,9 +332,21 @@ i:hover {
     text-align: center;
 }
 
-.add-prod-symbol>i {
-    font-size: 3rem;
-    text-align: right;
+.add-prod-container{
+    width: 95%;
+    margin: 20px;
+}
+
+.add-prod-container>i {
+    display: inline;
+    font-size: 2rem;
+    float: right;
+}
+
+.add-prod-title {
+    display: inline;
+    font-size: 30px;
+    text-align: left;
 }
 
 .back-symbol {
@@ -388,9 +432,11 @@ i:hover {
     text-align: left;
     margin-left: auto;
     margin-right: auto;
+    height: 50px;
 
     mat-form-field {
         display: inline-block;
+
     }
 
     mat-select {
@@ -421,15 +467,22 @@ i:hover {
     font-weight: bold;
     font-size: 30px;
     color: black;
+    border: #B99470 solid 2px; 
 }
 
-.options-panel.mat-mdc-select-value-text{    
+mat-select{    
     background: #FEFAE0;
-    font-weight: bold;
-    font-size: 30px;
-    color: blueviolet !important;
+    font-weight: bolder !important;
+    font-size: 28px !important;
+    display: flex;
+    padding-top: 10px;
+    padding-left: 20px;
+    align-items: center;
 }
 
+mat-form-field{
+    width: 50%;
+}
 
 .menu-panel {
     padding: 20px;
@@ -455,23 +508,77 @@ i:hover {
 }
 
 .error {
+    position: relative;
     width: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: left;
     color: #FEFAE0;
     font-weight: bolder;
-    font-size: 30px;
+    font-size: 20px;
     padding: 10px;
     border-radius: 15px;
     background: #fc734b;
-    box-shadow: 5px 5px 10px #d66240,
-        -5px -5px 10px #ff8456;
+    box-shadow: 3px 3px 5px #d66240;
 }
 
-a:hover {
+.basicred-text{
+    color: #d66240;
+}
+
+.basicred-button{
+    background-color: #d66240;
+    color: #FFFFFF;
+    padding: 5px;
+    border-radius: 10px;
+    font-family: 'Sofia Sans';
+    font-size: 20px;
+    position: relative;
+    float: right;
+}
+
+a:hover,
+i:hover,
+.item-menu:hover {
     color: #B99470;
 }
 
 .default-button {
     background: transparent;
     border: none;
+}
+
+.buscar-input{
+    font-size: 25px !important;
+    font-weight: bolder !important;
+}
+
+.share-input{
+    font-size: 20px !important;
+    font-weight: bold !important;
+    width: 100%;
+}
+
+.basic-input::placeholder {
+    color: #FEFAE0;
+    opacity: 1; /* Firefox */
+    font-family: 'Sofia Sans';
+    font-size: 20px;
+}
+
+.buscar-input::placeholder {
+    opacity: 1; /* Firefox */
+    font-family: 'Sofia Sans' !important;
+    font-size: 25px;
+    font-weight: bold !important;
+}
+
+.selectable-element:hover>*{
+    color: #B99470;
+}
+
+.dialog{
+    background-color: #FEFAE0;
+    font-family: 'Sofia Sans';
+    padding: 40px;
 }

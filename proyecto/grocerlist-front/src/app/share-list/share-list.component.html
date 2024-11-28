@@ -1,0 +1,9 @@
+<div class="dialog" panelClass="dialog-panel">
+  <h2 class="blacknormal-text">Compartir</h2>
+  <p class="blacksmall-text">Escriba el nombre de usuario con quien desea compartir la lista:</p>
+  <form [formGroup]="shareForm" class="insert-form">
+    <input matInput placeholder="Nombre de usuario" class="basic-input share-input" formControlName="nombreUsuario">
+  </form>
+    <button class="basicgreen-button" (click)="addList()">Aceptar</button>
+    <button mat-button mat-dialog-close class="basicred-button">Cerrar</button>
+</div>

@@ -15,5 +15,6 @@ export interface IncluyeProduct{
     idLista: number,
     idProducto: number,
     added: boolean,
-    cantidad: number
+    cantidad: number,
+    tpAlmacenaje: number
 }

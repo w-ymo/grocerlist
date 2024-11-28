@@ -9,6 +9,9 @@ import { LoginService } from '../services/login-service/login.service';
 import { User } from '../models/user';
 import { MatMenuModule } from '@angular/material/menu';
 import { List } from '../models/list';
+import { error } from 'node:console';
+import { MatDialog } from '@angular/material/dialog';
+import { ShareListComponent } from '../share-list/share-list.component';
 
 @Component({
   selector: 'app-list-of-list',
@@ -26,7 +29,7 @@ export class ListOfListComponent {
 
   user: User;
 
-  constructor(private loginService: LoginService, private listService: ListasService, private userService: UserService, private router: Router) { }
+  constructor(private loginService: LoginService, private listService: ListasService, private userService: UserService, private router: Router, private dialog: MatDialog) { }
 
   listsAdded: List[];
   listsCreated: List[];
@@ -56,7 +59,7 @@ export class ListOfListComponent {
     this.router.navigateByUrl('/list');
   }
 
-  deleteList(list: List){
+  deleteList(list: List) {
     this.listService.deleteList(list.idLista).subscribe({
       next: (data) => {
         console.log(data);
@@ -71,11 +74,13 @@ export class ListOfListComponent {
     });
   }
 
-  shareList(list: List){
-
+  shareList(list: List) {
+    sessionStorage.removeItem("currentList");
+    sessionStorage.setItem("currentList", list.idLista as unknown as string);
+    this.dialog.open(ShareListComponent);
   }
 
-  getListAdded(){
+  getListAdded() {
     this.listService.getListasAdded(this.username as string).subscribe({
       next: (l) => {
         this.listsAdded = l;
@@ -89,7 +94,7 @@ export class ListOfListComponent {
     });
   }
 
-  getListCreated(){
+  getListCreated() {
     this.listService.getListasCreated(this.username as string).subscribe({
       next: (l) => {
         this.listsCreated = l;
@@ -103,7 +108,7 @@ export class ListOfListComponent {
     });
   }
 
-  getLists(){
+  getLists() {
     this.getListAdded();
     this.getListCreated();
   }

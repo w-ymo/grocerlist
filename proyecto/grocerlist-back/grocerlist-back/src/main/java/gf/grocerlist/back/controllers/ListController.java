@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gf.grocerlist.back.entities.Lista;
 import gf.grocerlist.back.entities.Producto;
+import gf.grocerlist.back.entities.Usuario;
 import gf.grocerlist.back.request.ListRequest;
+import gf.grocerlist.back.request.ShareRequest;
 import gf.grocerlist.back.response.ListResponse;
 import gf.grocerlist.back.services.ListaService;
+import gf.grocerlist.back.services.UsuarioService;
 
 
 @RestController
@@ -29,6 +32,9 @@ public class ListController {
 
 	@Autowired
 	ListaService service;
+	
+	@Autowired
+	UsuarioService userService;
 	
 	@GetMapping("/obtener/seguidas/{username}")
 	public List<Lista> getListsAdded(@PathVariable String username){
@@ -63,6 +69,12 @@ public class ListController {
 	@DeleteMapping("/delete/{idLista}")
 	public boolean deleteList(@PathVariable Long idLista){
 		return service.deleteList(idLista);
+	}
+	
+	@PostMapping("/share")
+	public ListResponse shareList(@RequestBody ShareRequest req) {
+		Usuario user = userService.findByUsername(req.getUsername());
+		return service.addUser(user, req.getIdLista());
 	}
 	
 }

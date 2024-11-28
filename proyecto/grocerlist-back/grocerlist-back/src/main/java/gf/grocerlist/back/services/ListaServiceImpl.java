@@ -16,6 +16,7 @@ import gf.grocerlist.back.entities.Usuario;
 import gf.grocerlist.back.repositories.ListaRepository;
 import gf.grocerlist.back.repositories.UsuarioRepository;
 import gf.grocerlist.back.request.ListRequest;
+import gf.grocerlist.back.request.UserRequest;
 import gf.grocerlist.back.response.ListResponse;
 
 @Service
@@ -89,6 +90,13 @@ public class ListaServiceImpl implements ListaService {
 	public List<Producto> getProducts(Long id) {
 		return repo.getProducts(id);
 	}
+	
+	@Override
+	public ListResponse addUser(Usuario user, Long idLista) {
+		Lista lista = getById(idLista);
+		lista.getUsuarios().add(user);
+		return transformListaToListResponse(repo.save(lista));
+	}
 
 	private ListResponse transformListaToListResponse(Lista l) {
 		return ListResponse.builder().idLista(l.getIdLista()).nombreLista(l.getNombreLista()).build();
@@ -101,4 +109,6 @@ public class ListaServiceImpl implements ListaService {
 		});
 		return finalList;
 	}
+
+	
 }

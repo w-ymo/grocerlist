@@ -5,3 +5,8 @@ export interface List{
     nombreLista: string,
     usuarioCreador?: User
 }
+
+export interface ShareList{
+    idLista: number,
+    username: string
+}

@@ -4,25 +4,26 @@
     <div class="insert-container">
         <form [formGroup]="searchForm" class="insert-form">
             <mat-form-field>
-                <input matInput placeholder="Nombre del producto" class="basic-input" formControlName="nombreProducto">
+                <input matInput placeholder="Nombre del producto" class="basic-input buscar-input" formControlName="nombreProducto">
             </mat-form-field>
-            <mat-select placeholder="Categorias" [(ngModel)]="selectedCategoria" name="categoria" formControlName="idCategoria" panelClass="options-panel">
+            <mat-select placeholder="Categorias" [(ngModel)]="selectedCategoria" name="categoria"
+                formControlName="idCategoria" panelClass="options-panel">
+                <mat-option [value]="null"></mat-option>
                 <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria" class="option">
                     {{categoria.nombreCategoria}}
                 </mat-option>
             </mat-select>
-            <button class="basicgreen-button" (click)="search()">Buscar</button>
+            <button class="basicgreen-button buscar-button" (click)="search()">Buscar</button>
         </form>
     </div>
     <table class="table-list">
-        <thead>
-            <th>Producto</th>
-            <th>Categoria</th>
-        </thead>
-        <tr *ngFor="let producto of productos" (click)="setCurrentProduct(producto)" >
-            <td>{{producto.nombreProducto}}</td>
-            <td>{{producto.categoria.nombreCategoria}}</td>
-        </tr>
+        <tbody>
+            <tr *ngFor="let producto of productos" (click)="setCurrentProduct(producto)" class="selectable-element">
+                <td class="blacknormal-text">{{producto.nombreProducto}}</td>
+                <td class="blacknormal-text">{{producto.categoria.nombreCategoria}}</td>
+            </tr>
+        </tbody>
     </table>
+    <br><br>
+    <p *ngIf="noResults" class="error">No se han encontrado resultados</p>
 </div>
-

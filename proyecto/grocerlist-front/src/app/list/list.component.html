@@ -17,19 +17,22 @@
                                 [hidden]="!editMode"></i></div>
                     </td>
                     <td>
-                        <div>
-                            <button [matMenuTriggerFor]="menu" aria-label="Menu productos">
+                        <div *ngIf="!editMode">
+                            <button [matMenuTriggerFor]="menu" aria-label="Menu productos" class="default-button">
                                 <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
                             </button>
                             <mat-menu #menu="matMenu" class="menu-panel">
-                                <button mat-menu-item (click)="toggleEdit()">
-                                    <span>Editar</span>
+                                <button mat-menu-item (click)="toggleEdit()" class="item-menu">
+                                    <i class="bi bi-pencil-square"></i>
+                                    <span> Editar</span>
                                 </button>
-                                <button mat-menu-item (click)="deleteList()" *ngIf="esPropietario">
-                                    <span>Eliminar</span>
+                                <button mat-menu-item (click)="deleteList()" *ngIf="esPropietario" class="item-menu">
+                                    <i class="bi bi-trash3-fill"></i>
+                                    <span> Eliminar</span>
                                 </button>
-                                <button mat-menu-item (click)="shareList()" *ngIf="esPropietario">
-                                    <span>Compartir</span>
+                                <button mat-menu-item (click)="shareList()" *ngIf="esPropietario" class="item-menu">
+                                    <i class="bi bi-share-fill"></i>
+                                    <span> Compartir</span>
                                 </button>
                             </mat-menu>
                         </div>
@@ -38,8 +41,8 @@
             </tbody>
         </table>
     </form>
-    <div class="add-prod-symbol">
-        <h3 class="subtitle-text">Productos</h3><i class="bi bi-plus" (click)="openAddProduct()"></i>
+    <div class="add-prod-container">
+        <h3 class="add-prod-title">Productos</h3><i class="bi bi-plus" (click)="openAddProduct()"></i>
     </div>
     <table class="table-list-check">
         <tbody>
@@ -49,11 +52,11 @@
                         (click)="toggleAdded(producto)"></mat-checkbox>
                 </td>
                 <td>
-                    <div><a class="blacknormal-text">{{producto.producto.nombreProducto}}</a></div>
+                    <div><span class="blacknormal-text">{{producto.producto.nombreProducto}}</span></div>
                 </td>
                 <td>
                     <div>
-                        <input type="number" class="basic-input" [(ngModel)]="producto.cantidad" name="nombreLista"
+                        <input type="number" [ngClass]="{'basic-input-cant': producto.editMode, 'basic-input-cant-no-edit': !producto.editMode}" [(ngModel)]="producto.cantidad" name="nombreLista"
                             [readonly]="!producto.editMode">
                     </div>
                 </td>
@@ -69,7 +72,7 @@
                         </div>
                     }
                     @else {
-                        <a class="blacknormal-text">{{producto.tpAlmacenaje.unidadesAlmacenaje}}</a>
+                        <span class="blacknormal-text">{{producto.tpAlmacenaje.unidadesAlmacenaje}}</span>
                     }
 
                 </td>
@@ -80,29 +83,29 @@
                         </div>
                     }@else{
                         <div>
-                            <button [matMenuTriggerFor]="menuProducto" aria-label="Menu productos">
+                            <button [matMenuTriggerFor]="menuProducto" aria-label="Menu productos" class="default-button">
                                 <div class="dropdown-symbol"><i class="bi bi-three-dots"></i></div>
                             </button>
                             <mat-menu #menuProducto="matMenu" class="menu-panel">
-                                <button mat-menu-item (click)="toggleEditProduct(producto)">
+                                <button mat-menu-item (click)="toggleEditProduct(producto)" class="item-menu">
                                     <i class="bi bi-pencil-square"></i>
                                     <span> Editar</span>
                                 </button>
-                                <button mat-menu-item (click)="deleteProduct(producto)">
+                                <button mat-menu-item (click)="deleteProduct(producto)" class="item-menu">
                                     <i class="bi bi-trash3-fill"></i>
                                     <span> Eliminar</span>
                                 </button>
                             </mat-menu>
                         </div>
                     }
-
-
                 </td>
             </tr>
         </tbody>
     </table>
     <div *ngIf="productSize">
-        <h3 class="subtitle-text">Productos Comprados</h3>
+        <div class="add-prod-container">
+            <h3 class="add-prod-title">Productos Comprados</h3>
+        </div>
         <table class="table-list-check">
             <tbody>
                 <tr class="table-list-element" *ngFor="let producto of productosAdded">
@@ -111,13 +114,13 @@
                             (click)="toggleAdded(producto)"></mat-checkbox>
                     </td>
                     <td>
-                        <div><a class="blacknormal-text">{{producto.producto.nombreProducto}}</a></div>
+                        <div><span class="blacknormal-text">{{producto.producto.nombreProducto}}</span></div>
                     </td>
                     <td>
-                        <div><a class="blacknormal-text">{{producto.cantidad}}</a></div>
+                        <div><span class="blacknormal-text">{{producto.cantidad}}</span></div>
                     </td>
                     <td>
-                        <div><a class="blacknormal-text">{{producto.tpAlmacenaje.unidadesAlmacenaje}}</a></div>
+                        <div><span class="blacknormal-text">{{producto.tpAlmacenaje.unidadesAlmacenaje}}</span></div>
                     </td>
                 </tr>
             </tbody>

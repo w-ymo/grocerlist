@@ -3,7 +3,7 @@ import { User } from '../../models/user';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { appConfig, baseURI } from '../../app.config';
 import { catchError, Observable, throwError } from 'rxjs';
-import { List } from '../../models/list';
+import { List, ShareList } from '../../models/list';
 import { BasicService } from '../basic.service';
 import { Product } from '../../models/product';
 import { enviroment } from '../../../enviroment/enviroment';
@@ -56,5 +56,9 @@ export class ListasService extends BasicService{
     );
   }
 
-  //generar url de compartir
+  shareList(request: ShareList): Observable<List>{
+    return this.http.post<List>(enviroment.apiURL + 'api/listas/share', request).pipe(
+      catchError(this.handleError)
+    );
+  }
 }

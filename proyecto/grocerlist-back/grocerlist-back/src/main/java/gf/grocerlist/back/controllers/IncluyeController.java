@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 import gf.grocerlist.back.entities.Lista;
 import gf.grocerlist.back.entities.Producto;
 import gf.grocerlist.back.entities.ProductoListaId;
+import gf.grocerlist.back.entities.TpAlmacenaje;
 import gf.grocerlist.back.request.IncluyeAddedRequest;
+import gf.grocerlist.back.request.IncluyeProdRequest;
 import gf.grocerlist.back.request.IncluyeRequest;
 import gf.grocerlist.back.response.IncluyeResponse;
 import gf.grocerlist.back.services.IncluyeService;
 import gf.grocerlist.back.services.ListaService;
 import gf.grocerlist.back.services.ProductoService;
+import gf.grocerlist.back.services.TpAlmacenajeService;
 import jakarta.websocket.server.PathParam;
 
 @RestController
@@ -37,6 +40,9 @@ public class IncluyeController {
 	
 	@Autowired
 	private ListaService listService;
+	
+	@Autowired
+	private TpAlmacenajeService almacenajeService;
 	
 	@PostMapping("/obtener")
 	public List<IncluyeResponse> getAll(@RequestBody IncluyeAddedRequest req){
@@ -54,10 +60,11 @@ public class IncluyeController {
 	}
 
 	@PostMapping("/insertProduct")
-	public IncluyeResponse insertProduct(@RequestBody IncluyeRequest incluye) {
+	public IncluyeResponse insertProduct(@RequestBody IncluyeProdRequest incluye) {
 		Producto prod = prodService.getById(incluye.getIdProducto());
 		Lista list = listService.getById(incluye.getIdLista());
-		return service.insertProduct(incluye, prod, list);
+		TpAlmacenaje almacenaje = almacenajeService.getById(incluye.getTpAlmacenaje());
+		return service.insertProduct(incluye, prod, list, almacenaje);
 	}
 
 	@DeleteMapping("/delete/{idLista}/{idProducto}")
