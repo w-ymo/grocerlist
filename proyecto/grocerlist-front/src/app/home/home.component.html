@@ -1,9 +1,9 @@
 <app-header-grocerlist [menu]="1"></app-header-grocerlist>
 <p class="blacknormal-text">Te presentamos grocerlist, la nueva herramienta para comprar.</p>
 <p class="blacksmall-text">Visualiza y crea listas, mira las recomendaciones y ahorra</p>
-<form action="POST">
+<form [formGroup]="registerForm">
     <div>
-        <input placeholder="E-mail" type="text" name="email" [(ngModel)]="email">
-        <button type="submit" class="basicgreen-button">Registrarse</button>
+        <input placeholder="E-mail" type="text" name="email" formControlName="email">
+        <button class="basicgreen-button" (click)="goToRegister()">Registrarse</button>
     </div>
 </form>

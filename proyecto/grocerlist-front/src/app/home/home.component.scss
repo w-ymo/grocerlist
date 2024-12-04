@@ -20,3 +20,12 @@ form{
 form>div>p{
     text-align: left;
 }
+
+input::placeholder{
+    color: #FEFAE0;
+    font-family: 'Sofia Sans';
+}
+
+input{
+    margin-right: 20px;
+}

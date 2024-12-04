@@ -68,4 +68,12 @@ export class RegisterComponent {
     }
   }
 
+  ngOnInit(): void {
+    var currEmail = sessionStorage.getItem('email');
+    console.log(currEmail);
+    if(currEmail != ''){
+      this.registerForm.controls.email.setValue(currEmail);
+    }
+  }
+
 }

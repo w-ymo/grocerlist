@@ -8,6 +8,7 @@ import { ListComponent } from './list/list.component';
 import { AccountComponent } from './account/account.component';
 import { ProductsComponent } from './products/products.component';
 import { ShareListComponent } from './share-list/share-list.component';
+import { AboutComponent } from './about/about.component';
 
 
 export const routes: Routes = [ 
@@ -20,7 +21,9 @@ export const routes: Routes = [
         { path: 'list', component: ListComponent},
         { path: 'account', component: AccountComponent},
         { path: 'products', component: ProductsComponent},
-        { path: 'share', component: ShareListComponent}
+        { path: 'share', component: ShareListComponent},
+        { path: 'work-in-progress', component: WorkInProgressComponent},
+        { path: 'about', component: AboutComponent}
       ];
       
   export class AppRoutingModule { }      
