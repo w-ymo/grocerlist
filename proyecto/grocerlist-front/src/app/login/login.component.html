@@ -1,16 +1,19 @@
 <app-header-grocerlist [menu]="0"></app-header-grocerlist>
 <div class="background-img">
     <div class="form-container">
-        <h1>Iniciar sesion</h1>
+        <h1>Iniciar sesión</h1>
         <form [formGroup]="loginForm">
             <div>
                 <p class="form-subtitle-login">Usuario</p>
                 <input class="basic-input" type="text" name="username" formControlName="username">
                 <p class="form-subtitle-login">Contraseña</p>
-                <input class="basic-input" type="text" name="password" formControlName="password">
+                <div class="pass-container">
+                    <input class="basic-input" type="{{(showPassword === false)?'password':'text'}}" name="password" formControlName="password">
+                    <i class="pass-symbol" (click)="toggleVisibility()" [ngClass]="{'bi bi-eye-slash-fill': showPassword, 'bi bi-eye-fill': !showPassword}"></i>
+                </div>
                 <br>
                 <div>
-                    <button type="submit" class="basicgreen-button" (click)="login()">Iniciar sesion</button>
+                    <button type="submit" class="basicgreen-button" (click)="login()">Iniciar sesión</button>
                 </div>
                 <a routerLink="/forgotten" class="lightgreen-anchor">He olvidado mis datos de acceso</a>
                 <p class="blacksmall-text paragraph-center">¿No tiene una cuenta de grocerlist?</p>

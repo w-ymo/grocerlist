@@ -37,7 +37,7 @@ public class ListController {
 	UsuarioService userService;
 	
 	@GetMapping("/obtener/seguidas/{username}")
-	public List<Lista> getListsAdded(@PathVariable String username){
+	public List<ListResponse> getListsAdded(@PathVariable String username){
 		return service.getByUser(username);
 	}
 

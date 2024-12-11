@@ -6,11 +6,12 @@ import { LoginService } from '../services/login-service/login.service';
 import { LoginRequest } from '../models/loginReq';
 import { HttpClient } from '@angular/common/http';
 import { enviroment } from '../../enviroment/enviroment';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [HeaderGrocerlistComponent, RouterLink, ReactiveFormsModule],
+  imports: [HeaderGrocerlistComponent, RouterLink, ReactiveFormsModule, NgClass],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -22,6 +23,9 @@ export class LoginComponent {
     password: ['',Validators.required],
   })
 
+  showPassword: boolean = false;
+
+
   constructor(private formBuilder:FormBuilder, private router:Router, private loginService: LoginService) { }
 
   get username(){
@@ -31,6 +35,10 @@ export class LoginComponent {
   get password()
   {
     return this.loginForm.controls.password;
+  }
+
+  toggleVisibility(){
+    this.showPassword = !this.showPassword;
   }
 
   login(){

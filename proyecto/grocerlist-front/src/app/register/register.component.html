@@ -10,9 +10,15 @@
                 <p class="form-subtitle-login">E-mail</p>
                 <input class="basic-input" type="text" name="email" formControlName="email">
                 <p class="form-subtitle-login">Contraseña</p>
-                <input class="basic-input" type="text" name="password" formControlName="password">
+                <div class="pass-container">
+                    <input class="basic-input" type="{{(showPassword === false)?'password':'text'}}" name="password" formControlName="password">
+                    <i class="bi bi-eye-fill pass-symbol" (click)="toggleVisibility()" [ngClass]="{'bi bi-eye-slash-fill': showPassword, 'bi bi-eye-fill': !showPassword}"></i>
+                </div>
                 <p class="form-subtitle-login">Repita contraseña</p>
-                <input class="basic-input" type="text" name="passwordRe" formControlName="passwordRe">
+                <div class="pass-container">
+                    <input class="basic-input" type="{{(showPasswordRe === false)?'password':'text'}}" name="passwordRe" formControlName="passwordRe">
+                    <i class="pass-symbol" (click)="toggleVisibilityRe()" [ngClass]="{'bi bi-eye-slash-fill': showPasswordRe, 'bi bi-eye-fill': !showPasswordRe}"></i>
+                </div>
                 <br>
                 <div>
                     <button type="submit" class="basicgreen-button" (click)="register()">Registrarse</button>

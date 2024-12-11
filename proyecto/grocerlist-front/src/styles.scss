@@ -184,7 +184,8 @@ i:hover {
     height: 30px;
     width: 400px;
     margin-top: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 20px; 
+    font-family: 'Sofia Sans';
 }
 
 .basic-input-no-edit {
@@ -196,6 +197,7 @@ i:hover {
     width: 400px;
     margin-top: 5px;
     margin-bottom: 20px;
+    font-family: 'Sofia Sans';
 }
 
 .basic-input-cant {
@@ -331,6 +333,8 @@ i:hover {
     font-size: 3rem;
     text-align: center;
 }
+
+
 
 .add-prod-container{
     width: 95%;
@@ -581,4 +585,27 @@ i:hover,
     background-color: #FEFAE0;
     font-family: 'Sofia Sans';
     padding: 40px;
+}
+
+.pass-container{
+    input{
+        margin: 0px;
+        width: 380px;
+        padding: 0;
+    }
+
+    background-color: #FEFAE0;
+    height: fit-content;
+    padding: 0;
+}
+
+.pass-symbol{
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.pass-symbol:hover{
+    font-size: 1.3rem;
+    text-align: center;
+    color: #000000;
 }

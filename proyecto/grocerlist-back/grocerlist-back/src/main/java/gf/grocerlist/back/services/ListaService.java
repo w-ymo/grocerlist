@@ -15,7 +15,7 @@ public interface ListaService {
 	List<Producto> getProducts(Long id);
 	ListResponse getByIdResponse(Long id);
 	Lista getById(Long id);
-	List<Lista> getByUser(String username);
+	List<ListResponse> getByUser(String username);
 	List<ListResponse> getByCreatorUser(String username);
 	boolean deleteList(Long id);
 	ListResponse updateList(ListRequest lista);

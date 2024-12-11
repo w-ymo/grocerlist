@@ -5,16 +5,19 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { LoginService } from '../services/login-service/login.service';
 import { RegisterRequest } from '../models/registerReq';
 import { passwordMatchingValidatior } from '../validators/passwordMatchingValidator';
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [HeaderGrocerlistComponent, RouterLink, ReactiveFormsModule, NgIf, FormsModule],
+  imports: [HeaderGrocerlistComponent, RouterLink, ReactiveFormsModule, NgIf, FormsModule, NgClass],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
+
+  showPassword: boolean = false;
+  showPasswordRe: boolean = false;
 
   registerError:string="";
   registerForm=this.formBuilder.group({
@@ -43,6 +46,14 @@ export class RegisterComponent {
   get passwordRe()
   {
     return this.registerForm.controls.passwordRe;
+  }
+
+  toggleVisibility(){
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleVisibilityRe(){
+    this.showPasswordRe = !this.showPasswordRe;
   }
 
   register(){
