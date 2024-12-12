@@ -70,11 +70,11 @@ public class Usuario implements UserDetails {
 	private String password;
 	
 	@OneToMany(mappedBy = "usuarioCreador", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+	@JsonIgnoreProperties(value={"hibernateLazyInitializer", "handler"}, allowSetters = true) 
 	Set<Lista> listasCreadas = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "usuarios", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+	@JsonIgnoreProperties(value={"hibernateLazyInitializer", "handler"}, allowSetters = true) 
 	private Set<Lista> listas = new HashSet<>();
 
 	@Override
