@@ -94,7 +94,7 @@ export class ProductsComponent {
       idLista: this.list.idLista,
       idProducto: this.currentProduct.idProducto,
       cantidad: 0,
-      tpAlmacenaje: 5,
+      tpAlmacenaje: 1,
       added: false
     };
     this.incluyeService.insertProduct(incluye).subscribe({

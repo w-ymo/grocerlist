@@ -35,6 +35,7 @@ export class ListOfListComponent {
   listsCreated: List[];
 
   openAddList(): void {
+    console.log(this.user)
     this.listService.insertList({
       idLista: 0,
       nombreLista: "Nueva lista",

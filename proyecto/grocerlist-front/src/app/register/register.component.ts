@@ -67,6 +67,7 @@ export class RegisterComponent {
           this.registerError=errorData;
         },
         complete: () => {
+          sessionStorage.removeItem('email');
           this.router.navigateByUrl('/list-of-list');
           this.registerForm.reset();
         }

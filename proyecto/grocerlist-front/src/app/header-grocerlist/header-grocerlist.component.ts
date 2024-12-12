@@ -20,4 +20,9 @@ export class HeaderGrocerlistComponent {
   toggleLateralMenu(){
     this.visible = !this.visible;
   }
+
+  removeSession(){
+    sessionStorage.removeItem('email');
+  }
 }
+

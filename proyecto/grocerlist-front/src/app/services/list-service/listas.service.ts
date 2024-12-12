@@ -32,6 +32,7 @@ export class ListasService extends BasicService{
   }
 
   insertList(list: List): Observable<List>{
+    console.log(list)
     this.lists = this.http.post<List>(enviroment.apiURL + 'api/listas/insertarLista', list).pipe(
       catchError(this.handleError)
     );
