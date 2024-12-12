@@ -3,6 +3,9 @@ Proyecto final de ciclo, Desarrollo de Aplicaciones Multiplataforma.
 
 Trabajo realizado por Noel Prieto Pardo.
 
+## ¿Qué es?
+GROCERLIST es una aplicación de listas de la compra que pretende facilitar su creación y su uso.
+
 ## Estructura del proyecto
 Este repositorio cuenta con 4 carpetas:
 - [docs](docs): en esta carpeta se encuentran documentos relativos al desarrollo del proyecto (documento de ERQ, la memoria del proyecto, etc.).
