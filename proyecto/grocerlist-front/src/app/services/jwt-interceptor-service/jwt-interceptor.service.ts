@@ -12,7 +12,6 @@ export class JwtInterceptorService implements HttpInterceptor {
   constructor(private loginService:LoginService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('A)UEBHSNOIPDFIAOPSKF{P');
     let token:String=this.loginService.userToken;
 
     if (token!=""){

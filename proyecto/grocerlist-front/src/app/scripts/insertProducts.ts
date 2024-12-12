@@ -16,9 +16,10 @@ export class InsertProductsScript {
     }
 
     private async getProducts() {
-        for (let index = 0; index < 3808; index+=100 ) {
+        for (let index = 0; index < 3808; index+= 30) {
             this.productosService.getFromLosPrecios(index).subscribe({
                 next: (data) => {
+                    console.log(data);
                     this.productoLosPrecios = {
                         Datos: {
                             ID: data.Datos.ID,
@@ -37,12 +38,12 @@ export class InsertProductsScript {
                     // });
                 }
             });
-            await this.sleep(1500);
+            await this.sleep(1800);
         }
         this.insertCategorias();
     }
 
-    private insertCategorias() {
+    private async insertCategorias() {
         for (let index = 0; index < this.categoriasPre.length; index++) {
             const element = this.categoriasPre[index];
             if (this.categorias.indexOf(element) == -1) {
@@ -53,23 +54,30 @@ export class InsertProductsScript {
                 }
                 this.categoriaService.insertCategoria(cat).subscribe({
                     next: (data) => {
+                        console.log('categoria');
                         console.log(data);
+                    },
+                    complete: () => {
+                        console.log('xd');
                     }
                 });
             }
+            await this.sleep(1000);
         }
         this.insertProducts();
     }
 
-    private insertProducts() {
+    private async insertProducts() {
         for (let index = 0; index < this.productos.length; index++) {
             const element = this.productos[index];
             console.log(element);
             this.productosService.insertProducto(this.transformProduct(element)).subscribe({
                 next: (data) => {
+                    console.log('producto');
+                    console.log(data);
                 }
             });
-            
+            await this.sleep(1500);
         }
     }
 
